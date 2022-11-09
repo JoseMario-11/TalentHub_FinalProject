@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalentHub", "TalentHub\TalentHub.csproj", "{747E0166-6090-46C7-AF01-ED4F653F0AE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "..\..\TalentHub_Project\ClassLibrary\ClassLibrary.csproj", "{C7AD0884-81E5-46A7-B2FE-6F2243B27B5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalentHub_Project", "..\..\TalentHub_Project\TalentHub_Project\TalentHub_Project.csproj", "{C1901B0B-B1DA-4F20-86DE-A62EAF16D798}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{747E0166-6090-46C7-AF01-ED4F653F0AE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{747E0166-6090-46C7-AF01-ED4F653F0AE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{747E0166-6090-46C7-AF01-ED4F653F0AE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7AD0884-81E5-46A7-B2FE-6F2243B27B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7AD0884-81E5-46A7-B2FE-6F2243B27B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7AD0884-81E5-46A7-B2FE-6F2243B27B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7AD0884-81E5-46A7-B2FE-6F2243B27B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1901B0B-B1DA-4F20-86DE-A62EAF16D798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1901B0B-B1DA-4F20-86DE-A62EAF16D798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1901B0B-B1DA-4F20-86DE-A62EAF16D798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1901B0B-B1DA-4F20-86DE-A62EAF16D798}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
