@@ -29,47 +29,36 @@ namespace TalentHub
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // Form1
+            // label2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 604);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.ResumeLayout(false);
-=======
-            this.label1 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(81, 109);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Hola";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(111, 126);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 16);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Hola mundo";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(498, 333);
+            this.Controls.Add(this.label2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
->>>>>>> e2fc4009f2a1a5b9b36fe25a0bbe9d579c434f03
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
