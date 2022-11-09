@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalentHubApp", "TalentHubApp.csproj", "{D2B7A170-517E-4F1B-8BAA-2AB80A2FB990}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2B7A170-517E-4F1B-8BAA-2AB80A2FB990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2B7A170-517E-4F1B-8BAA-2AB80A2FB990}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2B7A170-517E-4F1B-8BAA-2AB80A2FB990}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2B7A170-517E-4F1B-8BAA-2AB80A2FB990}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E76D0F7D-6466-4CE7-A349-6A3F8D584D66}
+	EndGlobalSection
+EndGlobal
