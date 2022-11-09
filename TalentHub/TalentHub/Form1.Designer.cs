@@ -29,50 +29,62 @@ namespace TalentHub
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.tCMenu = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tCMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label2
+            // tCMenu
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(194, 228);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 29);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Hola mundo";
+            this.tCMenu.Controls.Add(this.tabPage1);
+            this.tCMenu.Controls.Add(this.tabPage2);
+            this.tCMenu.Location = new System.Drawing.Point(116, 128);
+            this.tCMenu.Name = "tCMenu";
+            this.tCMenu.SelectedIndex = 0;
+            this.tCMenu.Size = new System.Drawing.Size(680, 452);
+            this.tCMenu.TabIndex = 0;
             // 
-            // label3
+            // tabPage1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(206, 301);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(162, 29);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Hola mundo 2";
+            this.tabPage1.Location = new System.Drawing.Point(10, 47);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(660, 395);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(10, 47);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(619, 368);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(872, 604);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClientSize = new System.Drawing.Size(926, 687);
+            this.Controls.Add(this.tCMenu);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.tCMenu.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabControl tCMenu;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 
