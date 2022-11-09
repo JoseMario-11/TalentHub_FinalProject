@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalentHub_Project", "..\..\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalentHubApp", "..\TalentHubApp\TalentHubApp.csproj", "{D2B7A170-517E-4F1B-8BAA-2AB80A2FB990}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalentHubLab1", "..\TalentHubLab1\TalentHubLab1.csproj", "{4AB40E05-162E-4758-B738-771DEBB1F084}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D2B7A170-517E-4F1B-8BAA-2AB80A2FB990}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2B7A170-517E-4F1B-8BAA-2AB80A2FB990}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2B7A170-517E-4F1B-8BAA-2AB80A2FB990}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB40E05-162E-4758-B738-771DEBB1F084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB40E05-162E-4758-B738-771DEBB1F084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB40E05-162E-4758-B738-771DEBB1F084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB40E05-162E-4758-B738-771DEBB1F084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
