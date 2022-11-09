@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32922.545
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talent_Hub", "Talent_Hub\Talent_Hub.csproj", "{B457685E-BDF5-4231-9468-8F1D0F1DCA5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Talent_Hub", "Talent_Hub\Talent_Hub.csproj", "{3DA983EB-10A5-497E-9703-2B0CA6F3B221}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B457685E-BDF5-4231-9468-8F1D0F1DCA5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B457685E-BDF5-4231-9468-8F1D0F1DCA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B457685E-BDF5-4231-9468-8F1D0F1DCA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B457685E-BDF5-4231-9468-8F1D0F1DCA5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DA983EB-10A5-497E-9703-2B0CA6F3B221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DA983EB-10A5-497E-9703-2B0CA6F3B221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DA983EB-10A5-497E-9703-2B0CA6F3B221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DA983EB-10A5-497E-9703-2B0CA6F3B221}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1601D1B0-03DD-4F6C-B656-AAC9D4DDCB0F}
+		SolutionGuid = {F28F8CE4-C301-4F84-B01C-3680EA24B1D6}
 	EndGlobalSection
 EndGlobal
