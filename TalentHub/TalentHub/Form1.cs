@@ -1,5 +1,4 @@
-﻿using ClassLibrary.CODING;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -48,6 +47,7 @@ namespace TalentHub
                     //    LZ78 code = new LZ78();
                     //    recruit.LettersCoding.Add(Convert.ToInt32(data[1]), code.Encoding(letter));
                     //}
+                    
                 }
 
                 if (conv != null)

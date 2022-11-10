@@ -89,9 +89,17 @@
       <Project>{c7ad0884-81e5-46a7-b2fe-6f2243b27b5f}</Project>
       <Name>ClassLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\TalentHub_Project\TalentHub_Project\TalentHub_Project.csproj">
+      <Project>{c1901b0b-b1da-4f20-86de-a62eaf16d798}</Project>
+      <Name>TalentHub_Project</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\TalentHubApp\TalentHubApp.csproj">
       <Project>{d2b7a170-517e-4f1b-8baa-2ab80a2fb990}</Project>
       <Name>TalentHubApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\TalentHubLab1\TalentHubLab1.csproj">
+      <Project>{4ab40e05-162e-4758-b738-771debb1f084}</Project>
+      <Name>TalentHubLab1</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
