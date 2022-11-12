@@ -122,14 +122,5 @@ namespace TalentHub
         {
 
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string compressed = Data.Instance.TreeCompanies["Gleichner and Sons"].CodeMessage("3050203740117");
-            string descompressed = Data.Instance.TreeCompanies["Gleichner and Sons"].DecodingMessage(compressed);
-
-            MessageBox.Show("El resultado comprimido es:" + Operation.binaryToString(compressed));
-            MessageBox.Show("El resultado descomprimido es: " + descompressed);
-        }
     }
 }
