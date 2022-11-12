@@ -23,10 +23,6 @@ namespace TalentHub
 
        // [NonSerialized]
 
-        //public Dictionary<string, HuffmanTree> CompanyApplicantInfo = new Dictionary<string, HuffmanTree>();
-
-       // [NonSerialized]
-
         //public Dictionary<int, RecommendationLetter> RecommendationLettersInfo = new Dictionary<int, RecommendationLetter>();
         
         //[NonSerialized]

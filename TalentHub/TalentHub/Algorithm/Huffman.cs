@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClassLibrary.CODING
+namespace TalentHub.Algorithm
 {
-    
     public class HuffmanNode
     {
         public int Frequency { get; set; }
