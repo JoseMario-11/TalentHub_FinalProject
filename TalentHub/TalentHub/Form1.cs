@@ -13,6 +13,7 @@ using TalentHub.AVL;
 using TalentHub.Helpers;
 using TalentHub.Algorithm;
 using TalentHub.Algorithm.DES;
+using System.Text.RegularExpressions;
 
 namespace TalentHub
 {
@@ -119,6 +120,57 @@ namespace TalentHub
         }
 
         private void bImportFiles_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnComprimirCartas_Click(object sender, EventArgs e)
+        {
+            List<string> Letters = new List<string>();
+            Queue<string> dpi = new Queue<string>();
+
+            foreach (string file in Directory.EnumerateFiles("inputs", "*.txt"))
+            {
+                Letters.Add(File.ReadAllText(file)); //Add content of letter to list
+
+                Regex expression = new Regex(@"(?<=REC-)\d+");      //Get # DPI
+                var result = expression.Match(file);
+                dpi.Enqueue(Convert.ToString(result));          //Add DPI to list
+            }
+
+            List<string> EncodedLetters = new List<string>();
+
+            if (!Directory.Exists("encoded-inputs"))
+            {
+                Directory.CreateDirectory("encoded-inputs");    //Create folder
+            }
+
+            int counter = 1;
+            foreach (string text in Letters)
+            {
+                LZW encode = new LZW();     //Create a new instance for LZW
+                string xDpi = dpi.Peek();       //Take one of the DPIs on the queue
+                string FileName = @"encoded-inputs\" + "compressed-" + xDpi + "-" + counter.ToString() + ".txt";
+                System.IO.File.WriteAllText(FileName, encode.Compress(text));   //Create file
+                dpi.Dequeue();
+
+                if (dpi.Count() != 0)       //Verify if queue is not empty
+                {
+                    if (xDpi == dpi.Peek())
+                    {
+                        counter++;
+                    }
+                    else
+                    {
+                        counter = 1;
+                    }
+                }
+
+            }
+            MessageBox.Show("Se han comprimido todas las cartas de recomendación.");
+        }
+
+        private void btnDecompress_Click(object sender, EventArgs e)
         {
 
         }

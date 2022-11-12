@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithm\Huffman.cs" />
+    <Compile Include="Algorithm\LZW.cs" />
     <Compile Include="Applicant.cs" />
     <Compile Include="AVL\AVLclass.cs" />
     <Compile Include="AVL\Node.cs" />
