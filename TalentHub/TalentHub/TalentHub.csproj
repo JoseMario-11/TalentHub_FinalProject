@@ -34,8 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json.Bson, Version=1.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.Bson.1.0.2\lib\net45\Newtonsoft.Json.Bson.dll</HintPath>
@@ -56,6 +56,11 @@
     <Compile Include="Applicant.cs" />
     <Compile Include="AVL\AVLclass.cs" />
     <Compile Include="AVL\Node.cs" />
+    <Compile Include="DES\DES.cs" />
+    <Compile Include="DES\Feistel.cs" />
+    <Compile Include="DES\Operation.cs" />
+    <Compile Include="DES\Permutations.cs" />
+    <Compile Include="DES\SBoxes.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
