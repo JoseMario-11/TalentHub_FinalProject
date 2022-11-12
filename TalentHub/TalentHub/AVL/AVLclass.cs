@@ -73,7 +73,6 @@ namespace TalentHub.AVL
             return root;
         }
 
-
         public int calculateFactor(Node node)
         {
             if (node == null)
@@ -114,7 +113,6 @@ namespace TalentHub.AVL
             return newRoot;
         }
 
-
         public void Edit(Node root, Applicant applicant)
         {
             if (root.element.DPI == applicant.DPI)
@@ -133,10 +131,6 @@ namespace TalentHub.AVL
                 Edit(root.right, applicant);
             }
         }
-
-        
-
-       
 
         public Node Delete(Node root, Applicant applicant)
         {
@@ -218,9 +212,6 @@ namespace TalentHub.AVL
 
         }
         
-
-        
-
         public Node minValueNode(Node root)
         {
             Node aux = root;
@@ -230,7 +221,6 @@ namespace TalentHub.AVL
             }
             return aux;
         }
-
 
         public void InorderSearch(Node root, string name)
         {

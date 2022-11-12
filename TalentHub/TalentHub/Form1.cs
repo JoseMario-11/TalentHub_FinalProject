@@ -10,6 +10,9 @@ using Newtonsoft.Json;
 using System.Windows.Forms;
 using System.IO;
 using TalentHub.AVL;
+using TalentHub.Helpers;
+using TalentHub.Algorithm;
+using TalentHub.Algorithm.DES;
 
 namespace TalentHub
 {
@@ -40,7 +43,6 @@ namespace TalentHub
                 {
                     //array that contains the necessary instructions to create the AVL with all the applicant records
                     string[] instructions = line.Split(';');
-                    instructions[0].ToLower();
 
                     //deserialize string with newtonsoft.json to create a new applicant element
                     Applicant applicant = JsonConvert.DeserializeObject<Applicant>(instructions[1]);
@@ -60,6 +62,46 @@ namespace TalentHub
                             break;
                     }
 
+                    //Update information to generate the code for compressed companie
+                    UpdateCompanieInformation(applicant);
+                }
+            }
+            //Inicialization of tree companies to compress DPI
+            UpdateTreeCompanies();
+
+        }
+
+        private void UpdateCompanieInformation(Applicant applicant)
+        {
+            string[] companies = applicant.Companies;
+
+            foreach (string companie in companies)
+            {
+                //The first time appear a companie
+                if (!Data.Instance.DPICompanies.ContainsKey(companie))
+                {
+                    Data.Instance.DPICompanies.Add(companie, applicant.DPI);
+                }
+                else //A companie already exist and add more DPI recluiters
+                {
+                    Data.Instance.DPICompanies[companie] = Data.Instance.DPICompanies[companie] + applicant.DPI;
+                }
+            }
+        }
+
+        private void UpdateTreeCompanies()
+        {
+            foreach (var keyValuePair in Data.Instance.DPICompanies)
+            {
+                Huffman tree = new Huffman(keyValuePair.Value);
+                //It's the first time that generate a tree for the companie
+                if (!Data.Instance.TreeCompanies.ContainsKey(keyValuePair.Key))
+                {
+                    Data.Instance.TreeCompanies.Add(keyValuePair.Key, tree);
+                }
+                else //A tree alredy exist for the companie before, assign a new one
+                {
+                    Data.Instance.TreeCompanies[keyValuePair.Key] = tree;
                 }
             }
         }
@@ -74,6 +116,20 @@ namespace TalentHub
                 read = new StreamReader(file);
                 JsonConverter(read);
             }
+        }
+
+        private void bImportFiles_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string compressed = Data.Instance.TreeCompanies["Gleichner and Sons"].CodeMessage("3050203740117");
+            string descompressed = Data.Instance.TreeCompanies["Gleichner and Sons"].DecodingMessage(compressed);
+
+            MessageBox.Show("El resultado comprimido es:" + Operation.binaryToString(compressed));
+            MessageBox.Show("El resultado descomprimido es: " + descompressed);
         }
     }
 }
