@@ -52,18 +52,29 @@ namespace TalentHub
             this.label7 = new System.Windows.Forms.Label();
             this.btnDecompress = new System.Windows.Forms.Button();
             this.mTBBuscarDPI = new System.Windows.Forms.MaskedTextBox();
+            this.tPConversations = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.rTBConversations = new System.Windows.Forms.RichTextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.bShowConversations = new System.Windows.Forms.Button();
+            this.mTBConversationsDPI = new System.Windows.Forms.MaskedTextBox();
             this.tCMenu.SuspendLayout();
             this.tPDataEntry.SuspendLayout();
             this.tPImportFiles.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gBCartas.SuspendLayout();
             this.gBBuscar.SuspendLayout();
+            this.tPConversations.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tCMenu
             // 
             this.tCMenu.Controls.Add(this.tPDataEntry);
             this.tCMenu.Controls.Add(this.tPImportFiles);
+            this.tCMenu.Controls.Add(this.tPConversations);
             this.tCMenu.Location = new System.Drawing.Point(8, 9);
             this.tCMenu.Margin = new System.Windows.Forms.Padding(2);
             this.tCMenu.Name = "tCMenu";
@@ -118,9 +129,9 @@ namespace TalentHub
             // 
             this.tPImportFiles.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tPImportFiles.Controls.Add(this.groupBox1);
-            this.tPImportFiles.Controls.Add(this.label13);
             this.tPImportFiles.Controls.Add(this.label12);
             this.tPImportFiles.Controls.Add(this.rTBLetters);
+            this.tPImportFiles.Controls.Add(this.label13);
             this.tPImportFiles.Controls.Add(this.label11);
             this.tPImportFiles.Controls.Add(this.btnWatchComp);
             this.tPImportFiles.Controls.Add(this.label10);
@@ -138,7 +149,7 @@ namespace TalentHub
             // 
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.bImportConversation);
-            this.groupBox1.Location = new System.Drawing.Point(22, 44);
+            this.groupBox1.Location = new System.Drawing.Point(16, 300);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(1);
@@ -162,7 +173,7 @@ namespace TalentHub
             this.bImportConversation.Location = new System.Drawing.Point(413, 18);
             this.bImportConversation.Margin = new System.Windows.Forms.Padding(1);
             this.bImportConversation.Name = "bImportConversation";
-            this.bImportConversation.Size = new System.Drawing.Size(143, 20);
+            this.bImportConversation.Size = new System.Drawing.Size(143, 23);
             this.bImportConversation.TabIndex = 3;
             this.bImportConversation.Text = "Cargar conversaciones";
             this.bImportConversation.UseVisualStyleBackColor = true;
@@ -172,16 +183,16 @@ namespace TalentHub
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(149, 19);
+            this.label13.Location = new System.Drawing.Point(143, 275);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(329, 24);
+            this.label13.Size = new System.Drawing.Size(323, 24);
             this.label13.TabIndex = 17;
-            this.label13.Text = "Importar convrersaciones con reclutas";
+            this.label13.Text = "Importar conversaciones con reclutas";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(384, 131);
+            this.label12.Location = new System.Drawing.Point(378, 41);
             this.label12.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(180, 13);
@@ -190,7 +201,7 @@ namespace TalentHub
             // 
             // rTBLetters
             // 
-            this.rTBLetters.Location = new System.Drawing.Point(387, 152);
+            this.rTBLetters.Location = new System.Drawing.Point(381, 62);
             this.rTBLetters.Margin = new System.Windows.Forms.Padding(1);
             this.rTBLetters.Name = "rTBLetters";
             this.rTBLetters.ReadOnly = true;
@@ -201,7 +212,7 @@ namespace TalentHub
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(30, 342);
+            this.label11.Location = new System.Drawing.Point(24, 255);
             this.label11.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(321, 13);
@@ -210,7 +221,7 @@ namespace TalentHub
             // 
             // btnWatchComp
             // 
-            this.btnWatchComp.Location = new System.Drawing.Point(105, 310);
+            this.btnWatchComp.Location = new System.Drawing.Point(99, 223);
             this.btnWatchComp.Margin = new System.Windows.Forms.Padding(1);
             this.btnWatchComp.Name = "btnWatchComp";
             this.btnWatchComp.Size = new System.Drawing.Size(154, 23);
@@ -223,7 +234,7 @@ namespace TalentHub
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(171, 101);
+            this.label10.Location = new System.Drawing.Point(165, 11);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(297, 24);
             this.label10.TabIndex = 13;
@@ -233,7 +244,7 @@ namespace TalentHub
             // 
             this.gBCartas.Controls.Add(this.label8);
             this.gBCartas.Controls.Add(this.btnComprimirCartas);
-            this.gBCartas.Location = new System.Drawing.Point(22, 147);
+            this.gBCartas.Location = new System.Drawing.Point(16, 57);
             this.gBCartas.Margin = new System.Windows.Forms.Padding(1);
             this.gBCartas.Name = "gBCartas";
             this.gBCartas.Padding = new System.Windows.Forms.Padding(1);
@@ -269,7 +280,7 @@ namespace TalentHub
             this.gBBuscar.Controls.Add(this.label7);
             this.gBBuscar.Controls.Add(this.btnDecompress);
             this.gBBuscar.Controls.Add(this.mTBBuscarDPI);
-            this.gBBuscar.Location = new System.Drawing.Point(22, 223);
+            this.gBBuscar.Location = new System.Drawing.Point(16, 133);
             this.gBBuscar.Margin = new System.Windows.Forms.Padding(1);
             this.gBBuscar.Name = "gBBuscar";
             this.gBBuscar.Padding = new System.Windows.Forms.Padding(1);
@@ -319,6 +330,93 @@ namespace TalentHub
             this.mTBBuscarDPI.Size = new System.Drawing.Size(134, 20);
             this.mTBBuscarDPI.TabIndex = 0;
             // 
+            // tPConversations
+            // 
+            this.tPConversations.Controls.Add(this.groupBox2);
+            this.tPConversations.Controls.Add(this.label3);
+            this.tPConversations.Controls.Add(this.rTBConversations);
+            this.tPConversations.Location = new System.Drawing.Point(4, 22);
+            this.tPConversations.Name = "tPConversations";
+            this.tPConversations.Size = new System.Drawing.Size(637, 371);
+            this.tPConversations.TabIndex = 3;
+            this.tPConversations.Text = "Conversaciones";
+            this.tPConversations.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 128);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(135, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Conversaciones del recluta";
+            // 
+            // rTBConversations
+            // 
+            this.rTBConversations.Location = new System.Drawing.Point(28, 149);
+            this.rTBConversations.Margin = new System.Windows.Forms.Padding(1);
+            this.rTBConversations.Name = "rTBConversations";
+            this.rTBConversations.ReadOnly = true;
+            this.rTBConversations.Size = new System.Drawing.Size(583, 200);
+            this.rTBConversations.TabIndex = 17;
+            this.rTBConversations.Text = "";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.bShowConversations);
+            this.groupBox2.Controls.Add(this.mTBConversationsDPI);
+            this.groupBox2.Location = new System.Drawing.Point(134, 23);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(1);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(1);
+            this.groupBox2.Size = new System.Drawing.Size(369, 85);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Conversaciones";
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(15, 20);
+            this.label4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(350, 26);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "*Introduce el DPI del recluta para visualizar las conversaciones de este. Podrás " +
+    "observar las conversaciones en el recuadro de abajo.";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(69, 54);
+            this.label5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "DPI:";
+            // 
+            // bShowConversations
+            // 
+            this.bShowConversations.Location = new System.Drawing.Point(220, 53);
+            this.bShowConversations.Margin = new System.Windows.Forms.Padding(1);
+            this.bShowConversations.Name = "bShowConversations";
+            this.bShowConversations.Size = new System.Drawing.Size(84, 20);
+            this.bShowConversations.TabIndex = 6;
+            this.bShowConversations.Text = "Mostrar cartas";
+            this.bShowConversations.UseVisualStyleBackColor = true;
+            this.bShowConversations.Click += new System.EventHandler(this.bShowConversations_Click);
+            // 
+            // mTBConversationsDPI
+            // 
+            this.mTBConversationsDPI.Location = new System.Drawing.Point(115, 54);
+            this.mTBConversationsDPI.Margin = new System.Windows.Forms.Padding(1);
+            this.mTBConversationsDPI.Mask = "0000000000000";
+            this.mTBConversationsDPI.Name = "mTBConversationsDPI";
+            this.mTBConversationsDPI.Size = new System.Drawing.Size(87, 20);
+            this.mTBConversationsDPI.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,7 +425,7 @@ namespace TalentHub
             this.Controls.Add(this.tCMenu);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Talent_Hub";
             this.tCMenu.ResumeLayout(false);
             this.tPDataEntry.ResumeLayout(false);
             this.tPDataEntry.PerformLayout();
@@ -338,6 +436,10 @@ namespace TalentHub
             this.gBCartas.PerformLayout();
             this.gBBuscar.ResumeLayout(false);
             this.gBBuscar.PerformLayout();
+            this.tPConversations.ResumeLayout(false);
+            this.tPConversations.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -368,6 +470,14 @@ namespace TalentHub
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button bImportConversation;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TabPage tPConversations;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button bShowConversations;
+        private System.Windows.Forms.MaskedTextBox mTBConversationsDPI;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox rTBConversations;
     }
 }
 

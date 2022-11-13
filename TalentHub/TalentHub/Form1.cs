@@ -136,7 +136,7 @@ namespace TalentHub
 
             if (directory == "")
             {
-                MessageBox.Show("Fallo al cargar archivos: no se ha seleccionado ninguún directorio.", "Error");
+                MessageBox.Show("Fallo al cargar archivos: no se ha seleccionado ningún directorio.", "Error");
             }
             else
             {
@@ -274,7 +274,130 @@ namespace TalentHub
 
         private void bImportConversation_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string directory = "";
 
+                try
+                {
+                    using (var FBD = new FolderBrowserDialog())
+                    {
+                        DialogResult result = FBD.ShowDialog();
+
+                        if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(FBD.SelectedPath))
+                        {
+                            directory = FBD.SelectedPath;
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ha ocurrido un error al abrir los archivos." + ex.Message, "Error");
+                }
+
+
+                if (directory == "")
+                {
+                    MessageBox.Show("Fallo al cargar archivos: no se ha seleccionado ningún directorio.", "Error");
+                }
+                else
+                {
+                    List<string> conv = new List<string>();
+                    Queue<string> dpi = new Queue<string>();
+
+                    Regex convValidation = new Regex(@"CONV-\d+.-\d+");
+
+                    foreach (string file in Directory.EnumerateFiles(directory, "*.txt"))
+                    {
+                        if (convValidation.IsMatch(file))
+                        {
+                            conv.Add(File.ReadAllText(file)); //Add content of letter to list
+
+                            Regex expression = new Regex(@"(?<=CONV-)\d+");      //Get # DPI
+                            var result = expression.Match(file);
+                            dpi.Enqueue(Convert.ToString(result));          //Add DPI to list
+                        }
+                    }
+
+                    if (!Directory.Exists("cipher-conversation"))
+                    {
+                        Directory.CreateDirectory("cipher-conversation");    //Create folder
+                    }
+
+                    int counter = 1;
+                    foreach (string text in conv)
+                    {
+                        string xDpi = dpi.Peek();       //Take one of the DPIs on the queue
+                        string FileName = @"cipher-conversation\" + "cipher-" + xDpi + "-" + counter.ToString() + ".txt";
+                        File.WriteAllText(FileName, DES.encrypt(text, Data.Instance.Password));   //Create file
+                        dpi.Dequeue();
+
+                        if (dpi.Count() != 0)       //Verify if queue is not empty
+                        {
+                            if (xDpi == dpi.Peek())
+                            {
+                                counter++;
+                            }
+                            else
+                            {
+                                counter = 1;
+                            }
+                        }
+
+                    }
+                    MessageBox.Show("Se han importado todas las conversaciones.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido una fallo: no se ha podido completar la operación:\n" + ex.Message, "Error");
+            }
+        }
+
+        private void bShowConversations_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mTBConversationsDPI.Text == "")
+                {
+                    MessageBox.Show("No ha ingresado ningún DPI");
+                }
+                else
+                {
+                    string dpi = mTBConversationsDPI.Text;
+                    List<string> conversations = new List<string>();
+
+                    foreach (string file in Directory.EnumerateFiles("cipher-conversation", "*.txt"))
+                    {
+                        if (file.Contains(dpi))
+                        {
+                            conversations.Add(File.ReadAllText(file)); //Add content of chipher conversation to list
+                        }
+                    }
+
+                    string textConversations = ""; int i = 1;
+
+                    foreach (string text in conversations)
+                    {
+                        if (i < conversations.Count)
+                        {
+                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}\n\n", i.ToString(), DES.decrypt(text, Data.Instance.Password)));
+                        }
+                        else
+                        {
+                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}", i.ToString(), DES.decrypt(text, Data.Instance.Password)));
+                        }
+                        i++;
+                    }
+
+                    rTBConversations.Text = textConversations;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido un fallo: no se ha podido completar la operación:\n" + ex.Message, "Error");
+            }
         }
     }
 }

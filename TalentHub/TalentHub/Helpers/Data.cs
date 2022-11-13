@@ -26,5 +26,7 @@ namespace TalentHub.Helpers
         public Dictionary<string, string> DPICompanies = new Dictionary<string, string>();
 
         public Dictionary<string, Huffman> TreeCompanies = new Dictionary<string, Huffman>();
+
+        public string Password = "DBDCJM22";
     }
 }
