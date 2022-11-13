@@ -13,8 +13,11 @@ using System.IO;
 using TalentHub.AVL;
 using TalentHub.Helpers;
 using TalentHub.Algorithm;
+using TalentHub.Algorithm.RSA;
 using TalentHub.Algorithm.DES;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+
 
 namespace TalentHub
 {
@@ -32,7 +35,8 @@ namespace TalentHub
         FileStream file;
         StreamReader read;
         public AVLclass AVL = new AVLclass();
-
+        public Recluiters Rec = new Recluiters();
+        public SHA256 alg = SHA256.Create();
 
         // Function dedicated to convert a string into json format  
         public void JsonConverter(StreamReader file)
@@ -117,7 +121,18 @@ namespace TalentHub
                 file = new FileStream(pathSearcher.FileName, FileMode.OpenOrCreate);
                 read = new StreamReader(file);
                 JsonConverter(read);
+                AVL.getAll(AVL.Root);
+                Rec.InsertInfo(AVL.AllApplicantList);
+
+                foreach (string recluiter in Rec.Dict.Keys)
+                {
+                    comboBox1.Items.Add(recluiter);
+                }
+
+                file.Close();
             }
+
+            
         }
 
         private void btnComprimirCartas_Click(object sender, EventArgs e)
@@ -330,7 +345,7 @@ namespace TalentHub
                     {
                         string xDpi = dpi.Peek();       //Take one of the DPIs on the queue
                         string FileName = @"cipher-conversation\" + "cipher-" + xDpi + "-" + counter.ToString() + ".txt";
-                        File.WriteAllText(FileName, DES.encrypt(text, Data.Instance.Password));   //Create file
+                        File.WriteAllText(FileName, Algorithm.DES.DES.encrypt(text, Data.Instance.Password));   //Create file
                         dpi.Dequeue();
 
                         if (dpi.Count() != 0)       //Verify if queue is not empty
@@ -382,11 +397,11 @@ namespace TalentHub
                     {
                         if (i < conversations.Count)
                         {
-                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}\n\n", i.ToString(), DES.decrypt(text, Data.Instance.Password)));
+                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}\n\n", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
                         }
                         else
                         {
-                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}", i.ToString(), DES.decrypt(text, Data.Instance.Password)));
+                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
                         }
                         i++;
                     }
@@ -398,6 +413,60 @@ namespace TalentHub
             {
                 MessageBox.Show("Ha ocurrido un fallo: no se ha podido completar la operación:\n" + ex.Message, "Error");
             }
+        }
+
+        private void comboBox1_TextChanged(object sender, EventArgs e)
+        {
+            comboBox2.Items.Clear();
+            comboBox2.Text = "";
+            foreach (string company in Rec.Dict[comboBox1.Text])
+            {
+                comboBox2.Items.Add(company);
+            }
+        }
+
+        private void bVerifyCompany_Click(object sender, EventArgs e)
+        {
+            if (comboBox2.Text != "")
+            {
+                byte[] data = Encoding.ASCII.GetBytes(comboBox2.Text);
+                byte[] hash = alg.ComputeHash(data);
+
+                RSAParameters sharedParameters;
+                byte[] signedHash;
+
+
+                //Signature generation
+                using (RSA rsa = RSA.Create())
+                {
+                    sharedParameters = rsa.ExportParameters(true);
+
+                    RSAPKCS1SignatureFormatter rsaFormatter = new RSAPKCS1SignatureFormatter(rsa);
+                    rsaFormatter.SetHashAlgorithm(nameof(SHA256));
+
+                    signedHash = rsaFormatter.CreateSignature(hash);
+                }
+
+                // Signature verification
+
+                using (RSA rsa = RSA.Create())
+                {
+                    rsa.ImportParameters(sharedParameters);
+
+                    RSAPKCS1SignatureDeformatter rsaDeformatter = new RSAPKCS1SignatureDeformatter(rsa);
+                    rsaDeformatter.SetHashAlgorithm(nameof(SHA256));
+
+                    if (rsaDeformatter.VerifySignature(hash, signedHash))
+                    {
+                        MessageBox.Show("Firma de la empresa correctamente verificada, proceso finalizado");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error en la verificación de la identidad de la empresa");
+                    }
+                }
+            }
+            
         }
     }
 }
