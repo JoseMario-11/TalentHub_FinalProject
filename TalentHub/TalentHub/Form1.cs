@@ -124,15 +124,13 @@ namespace TalentHub
                 AVL.getAll(AVL.Root);
                 Rec.InsertInfo(AVL.AllApplicantList);
 
-                foreach (string recluiter in Rec.Dict.Keys)
-                {
-                    comboBox1.Items.Add(recluiter);
-                }
+                //foreach (string recluiter in Rec.Dict.Keys)
+                //{
+                //    cBReluiter.Items.Add(recluiter);
+                //}
 
                 file.Close();
             }
-
-            
         }
 
         private void btnComprimirCartas_Click(object sender, EventArgs e)
@@ -374,6 +372,7 @@ namespace TalentHub
         {
             try
             {
+                rTBConversations.Text = "";
                 if (mTBConversationsDPI.Text == "")
                 {
                     MessageBox.Show("No ha ingresado ningún DPI");
@@ -383,30 +382,38 @@ namespace TalentHub
                     string dpi = mTBConversationsDPI.Text;
                     List<string> conversations = new List<string>();
 
-                    foreach (string file in Directory.EnumerateFiles("cipher-conversation", "*.txt"))
+                    if (AVL.SearchByDPI(AVL.Root, dpi) == null)
                     {
-                        if (file.Contains(dpi))
-                        {
-                            conversations.Add(File.ReadAllText(file)); //Add content of chipher conversation to list
-                        }
+                        MessageBox.Show("No se ha encontrado a ningún recluta con ese DPI.");
                     }
-
-                    string textConversations = ""; int i = 1;
-
-                    foreach (string text in conversations)
+                    else
                     {
-                        if (i < conversations.Count)
+                        foreach (string file in Directory.EnumerateFiles("cipher-conversation", "*.txt"))
                         {
-                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}\n\n", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
+                            if (file.Contains(dpi))
+                            {
+                                conversations.Add(File.ReadAllText(file)); //Add content of chipher conversation to list
+                            }
                         }
-                        else
-                        {
-                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
-                        }
-                        i++;
-                    }
 
-                    rTBConversations.Text = textConversations;
+                        string textConversations = ""; int i = 1;
+
+                        foreach (string text in conversations)
+                        {
+                            if (i < conversations.Count)
+                            {
+                                textConversations += (string.Format("Conversación Núm.{0}:\n{1}\n\n", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
+                            }
+                            else
+                            {
+                                textConversations += (string.Format("Conversación Núm.{0}:\n{1}", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
+                            }
+                            i++;
+                        }
+
+                        rTBConversations.Text = textConversations;
+                    }
+                    mTBConversationsDPI.Text = "";
                 }
             }
             catch (Exception ex)
@@ -415,21 +422,22 @@ namespace TalentHub
             }
         }
 
-        private void comboBox1_TextChanged(object sender, EventArgs e)
-        {
-            comboBox2.Items.Clear();
-            comboBox2.Text = "";
-            foreach (string company in Rec.Dict[comboBox1.Text])
-            {
-                comboBox2.Items.Add(company);
-            }
-        }
-
+        //CAMBIAR EN SU MOMENTO
+        //CAMBIAR
+        //CAMBIAR
+        //CAMBIAR
+        //CAMBIAR
+        //CAMBIAR
+        //CAMBIAR
+        //CAMBIAR
+        //CAMBIAR
+        //CAMBIAR
+        //CAMBIAR
         private void bVerifyCompany_Click(object sender, EventArgs e)
         {
-            if (comboBox2.Text != "")
+            if (cBCompanie.Text != "")
             {
-                byte[] data = Encoding.ASCII.GetBytes(comboBox2.Text);
+                byte[] data = Encoding.ASCII.GetBytes(cBCompanie.Text);
                 byte[] hash = alg.ComputeHash(data);
 
                 RSAParameters sharedParameters;
@@ -467,6 +475,99 @@ namespace TalentHub
                 }
             }
             
+        }
+
+        private void bWatchConversations_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists("cipher-conversation"))
+            {
+                Process.Start("explorer.exe", "cipher-conversation");
+            }
+            else
+            {
+                MessageBox.Show("Aún no hay conversaionescargadas al sistema.");
+            }
+        }
+
+
+
+        private void bSearchApplicant_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cBCompanie.Enabled = false;
+                rTBApplicantInformation.Text = "";
+                Data.Instance._Applicant = null;
+                if (mTBApplicantDPI.Text == "")
+                {
+                    MessageBox.Show("No ha ingresado ningún DPI para iniciar un proceso de recultamiento.");
+                    mTBApplicantDPI.Text = "";
+                }
+                else
+                {
+                    string dpi = mTBApplicantDPI.Text;
+                    Applicant applicant = AVL.SearchByDPI(AVL.Root, dpi);
+                    if (applicant == null)
+                    {
+                        MessageBox.Show("El DPI ingresado no se encuentra registrado en el sistema.", "Error");
+                        mTBApplicantDPI.Text = "";
+                    }
+                    else
+                    {
+                        Data.Instance._Applicant = applicant;
+                        string infoApplicant = string.Format("Nombre: {0}\tDPI: {1}\nReclutador: {2}", applicant.Name, applicant.DPI, applicant.Recluiter);
+
+                        tBSelectedRecluiter.Text = applicant.Recluiter;
+                        rTBApplicantInformation.Text = infoApplicant;
+                        cBCompanie.Enabled = true;
+                        bStartRecluitProcess.Visible = true;
+                    }
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido finalizar el proceso, ha ocurrido un error.\n" + ex.Message, "Error");
+            }
+        }
+
+        private void tBSelectedRecluiter_TextChanged(object sender, EventArgs e)
+        {
+            cBCompanie.Items.Clear();
+            cBCompanie.Text = "";
+            List<string> companies = new List<string>();
+            foreach (var company in Data.Instance._Applicant.Companies)
+            {
+                companies.Add(company);
+            }
+
+            foreach (string company in Rec.Dict[tBSelectedRecluiter.Text])
+            {
+                if (companies.Contains(company))
+                {
+                    cBCompanie.Items.Add(company);
+                }
+            }
+        }
+
+        private void bStartRecluitProcess_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cBCompanie.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Error: no puede iniciar el proceso de reclutamiento si no ha especificado una compañia.\nPor favor seleccionar una compañía.", "Error");
+                }
+                else
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido finalizar el proceso: ha ocurrido un error.\n" + ex.Message, "Error");
+            }
         }
     }
 }
