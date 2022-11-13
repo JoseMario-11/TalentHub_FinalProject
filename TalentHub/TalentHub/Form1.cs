@@ -127,48 +127,73 @@ namespace TalentHub
 
         private void btnComprimirCartas_Click(object sender, EventArgs e)
         {
-            List<string> Letters = new List<string>();
-            Queue<string> dpi = new Queue<string>();
+            
+            string directory = "";
 
-            foreach (string file in Directory.EnumerateFiles("inputs", "*.txt"))
+            using (var FBD = new FolderBrowserDialog())
             {
-                Letters.Add(File.ReadAllText(file)); //Add content of letter to list
+                DialogResult result = FBD.ShowDialog();
 
-                Regex expression = new Regex(@"(?<=REC-)\d+");      //Get # DPI
-                var result = expression.Match(file);
-                dpi.Enqueue(Convert.ToString(result));          //Add DPI to list
-            }
-
-            List<string> EncodedLetters = new List<string>();
-
-            if (!Directory.Exists("encoded-inputs"))
-            {
-                Directory.CreateDirectory("encoded-inputs");    //Create folder
-            }
-
-            int counter = 1;
-            foreach (string text in Letters)
-            {
-                LZW encode = new LZW();     //Create a new instance for LZW
-                string xDpi = dpi.Peek();       //Take one of the DPIs on the queue
-                string FileName = @"encoded-inputs\" + "compressed-" + xDpi + "-" + counter.ToString() + ".txt";
-                System.IO.File.WriteAllText(FileName, encode.Compress(text));   //Create file
-                dpi.Dequeue();
-
-                if (dpi.Count() != 0)       //Verify if queue is not empty
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(FBD.SelectedPath))
                 {
-                    if (xDpi == dpi.Peek())
+                    directory = FBD.SelectedPath;
+                }
+            }
+
+            if (directory == "")
+            {
+                MessageBox.Show("Fallo al cargar archivos: no se ha seleccionado ninguún directorio.", "Error");
+            }
+            else
+            {
+                List<string> Letters = new List<string>();
+                Queue<string> dpi = new Queue<string>();
+
+                Regex lValidation = new Regex(@"REC-\d+.-\d+");
+
+                foreach (string file in Directory.EnumerateFiles(directory, "*.txt"))
+                {
+                    if (lValidation.IsMatch(file))
                     {
-                        counter++;
-                    }
-                    else
-                    {
-                        counter = 1;
+                        Letters.Add(File.ReadAllText(file)); //Add content of letter to list
+
+                        Regex expression = new Regex(@"(?<=REC-)\d+");      //Get # DPI
+                        var result = expression.Match(file);
+                        dpi.Enqueue(Convert.ToString(result));          //Add DPI to list
                     }
                 }
 
+                List<string> EncodedLetters = new List<string>();
+
+                if (!Directory.Exists("encoded-inputs"))
+                {
+                    Directory.CreateDirectory("encoded-inputs");    //Create folder
+                }
+
+                int counter = 1;
+                foreach (string text in Letters)
+                {
+                    LZW encode = new LZW();     //Create a new instance for LZW
+                    string xDpi = dpi.Peek();       //Take one of the DPIs on the queue
+                    string FileName = @"encoded-inputs\" + "compressed-" + xDpi + "-" + counter.ToString() + ".txt";
+                    File.WriteAllText(FileName, encode.Compress(text));   //Create file
+                    dpi.Dequeue();
+
+                    if (dpi.Count() != 0)       //Verify if queue is not empty
+                    {
+                        if (xDpi == dpi.Peek())
+                        {
+                            counter++;
+                        }
+                        else
+                        {
+                            counter = 1;
+                        }
+                    }
+
+                }
+                MessageBox.Show("Se han comprimido todas las cartas de recomendación.");
             }
-            MessageBox.Show("Se han comprimido todas las cartas de recomendación.");
         }
 
         private void btnDecompress_Click(object sender, EventArgs e)
@@ -254,6 +279,11 @@ namespace TalentHub
         }
 
         private void bImportLetters_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bImportConv_Click(object sender, EventArgs e)
         {
 
         }
