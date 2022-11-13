@@ -172,7 +172,72 @@ namespace TalentHub
 
         private void btnDecompress_Click(object sender, EventArgs e)
         {
+            try
+            {
+                rTBLetters.Clear();
+                long DPI = Convert.ToInt64(mTBBuscarDPI.Text);
+                bool verify = false;
 
+                List<string> FilteredFiles = new List<string>();
+                foreach (string file in Directory.EnumerateFiles("encoded-inputs", "*.txt"))    //Iterate all files from directory
+                {
+                    if (file.Contains(Convert.ToString(DPI)))
+                    {
+                        FilteredFiles.Add(File.ReadAllText(file));  //If file name contains the DPI, add to list
+                        verify = true;
+                    }
+                }
+
+                if (verify)
+                {
+                    List<string> scodes = new List<string>();   //List that will contain the string codes
+                    List<int> codes = new List<int>();      //List that will contain one code for each position
+
+                    string directoryName = "decompressed-inputs/decompressed-REC-" + Convert.ToString(DPI);
+                    if (!Directory.Exists("decompressed-inputs"))
+                    {
+                        Directory.CreateDirectory("decompressed-inputs");    //Create folder          
+                    }
+                    if (!Directory.Exists(directoryName))
+                    {
+                        Directory.CreateDirectory(directoryName);    //Create folder
+                    }
+
+                    int i = 1;
+
+                    foreach (string compressed in FilteredFiles)
+                    {
+                        scodes = compressed.Split(',').ToList();    //Split codes by ','
+
+                        foreach (string item in scodes)
+                        {
+                            codes.Add(Convert.ToInt32(item));       //Add each string to list, converting it to integer                
+                        }
+
+                        LZW lzw = new LZW();        //Create new LZW instance
+                        string FileName = directoryName + "/" + "decompressed-REC-" + Convert.ToString(DPI) + "-" + Convert.ToString(i) + ".txt";
+                        string decompressedLetter = lzw.Decompress(codes);
+                        System.IO.File.WriteAllText(FileName, decompressedLetter);   //Create file;
+                        rTBLetters.Text += decompressedLetter + "\n\n"; //**NEW**: ADD TO RICH TEXT BOX
+                        scodes.Clear();
+                        codes.Clear();
+                        i++;
+                    }
+
+                    MessageBox.Show("Se han descomprimido las cartas de recomendación para el DPI: " + DPI.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("No se han encontrado cartas de recomendación para el DPI ingresado.");
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("ERROR: Ha ocurrido un problema con la descompresión. Por favor, reinicia el sistema.");
+            }
         }
     }
 }
