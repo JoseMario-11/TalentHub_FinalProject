@@ -35,13 +35,10 @@ namespace TalentHub
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.tPImportFiles = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.bImportConv = new System.Windows.Forms.Button();
-            this.bImportLetters = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.bImportConversation = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.rTBLetters = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -58,7 +55,7 @@ namespace TalentHub
             this.tCMenu.SuspendLayout();
             this.tPDataEntry.SuspendLayout();
             this.tPImportFiles.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.gBCartas.SuspendLayout();
             this.gBBuscar.SuspendLayout();
             this.SuspendLayout();
@@ -67,12 +64,11 @@ namespace TalentHub
             // 
             this.tCMenu.Controls.Add(this.tPDataEntry);
             this.tCMenu.Controls.Add(this.tPImportFiles);
-            this.tCMenu.Controls.Add(this.tabPage1);
             this.tCMenu.Location = new System.Drawing.Point(8, 9);
-            this.tCMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tCMenu.Margin = new System.Windows.Forms.Padding(2);
             this.tCMenu.Name = "tCMenu";
             this.tCMenu.SelectedIndex = 0;
-            this.tCMenu.Size = new System.Drawing.Size(645, 362);
+            this.tCMenu.Size = new System.Drawing.Size(645, 397);
             this.tCMenu.TabIndex = 0;
             // 
             // tPDataEntry
@@ -81,10 +77,10 @@ namespace TalentHub
             this.tPDataEntry.Controls.Add(this.label2);
             this.tPDataEntry.Controls.Add(this.button1);
             this.tPDataEntry.Location = new System.Drawing.Point(4, 22);
-            this.tPDataEntry.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tPDataEntry.Margin = new System.Windows.Forms.Padding(2);
             this.tPDataEntry.Name = "tPDataEntry";
-            this.tPDataEntry.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tPDataEntry.Size = new System.Drawing.Size(637, 336);
+            this.tPDataEntry.Padding = new System.Windows.Forms.Padding(2);
+            this.tPDataEntry.Size = new System.Drawing.Size(637, 371);
             this.tPDataEntry.TabIndex = 0;
             this.tPDataEntry.Text = "Data entry";
             this.tPDataEntry.UseVisualStyleBackColor = true;
@@ -92,7 +88,7 @@ namespace TalentHub
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(122, 52);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(501, 20);
             this.textBox1.TabIndex = 2;
@@ -110,7 +106,7 @@ namespace TalentHub
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(26, 36);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 35);
             this.button1.TabIndex = 0;
@@ -120,100 +116,72 @@ namespace TalentHub
             // 
             // tPImportFiles
             // 
-            this.tPImportFiles.Controls.Add(this.label6);
-            this.tPImportFiles.Controls.Add(this.label5);
-            this.tPImportFiles.Controls.Add(this.bImportConv);
-            this.tPImportFiles.Controls.Add(this.bImportLetters);
-            this.tPImportFiles.Controls.Add(this.label4);
-            this.tPImportFiles.Controls.Add(this.label3);
+            this.tPImportFiles.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.tPImportFiles.Controls.Add(this.groupBox1);
+            this.tPImportFiles.Controls.Add(this.label13);
+            this.tPImportFiles.Controls.Add(this.label12);
+            this.tPImportFiles.Controls.Add(this.rTBLetters);
+            this.tPImportFiles.Controls.Add(this.label11);
+            this.tPImportFiles.Controls.Add(this.btnWatchComp);
+            this.tPImportFiles.Controls.Add(this.label10);
+            this.tPImportFiles.Controls.Add(this.gBCartas);
+            this.tPImportFiles.Controls.Add(this.gBBuscar);
             this.tPImportFiles.Location = new System.Drawing.Point(4, 22);
-            this.tPImportFiles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tPImportFiles.Margin = new System.Windows.Forms.Padding(1);
             this.tPImportFiles.Name = "tPImportFiles";
-            this.tPImportFiles.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tPImportFiles.Size = new System.Drawing.Size(637, 336);
-            this.tPImportFiles.TabIndex = 1;
-            this.tPImportFiles.Text = "Cargar Archivos";
-            this.tPImportFiles.UseVisualStyleBackColor = true;
+            this.tPImportFiles.Padding = new System.Windows.Forms.Padding(1);
+            this.tPImportFiles.Size = new System.Drawing.Size(637, 371);
+            this.tPImportFiles.TabIndex = 2;
+            this.tPImportFiles.Text = "Comprimir Cartas";
             // 
-            // label6
+            // groupBox1
             // 
-            this.label6.Location = new System.Drawing.Point(141, 107);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(389, 37);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Opción para cargar múltiples archivos de cartas de recomendación y conversaciones" +
-    " para más de un recluta.";
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.bImportConversation);
+            this.groupBox1.Location = new System.Drawing.Point(22, 44);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(1);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(1);
+            this.groupBox1.Size = new System.Drawing.Size(594, 56);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Carga de conversaciones";
             // 
-            // label5
+            // label14
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(179, 57);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(250, 24);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Importar archivos de reclutas";
+            this.label14.Location = new System.Drawing.Point(15, 18);
+            this.label14.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(303, 30);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "*Esta acción permite cargar al programa todas los archivos de texto de conversaci" +
+    "ones entre reclutador y recluta";
             // 
-            // bImportConv
+            // bImportConversation
             // 
-            this.bImportConv.Location = new System.Drawing.Point(436, 210);
-            this.bImportConv.Name = "bImportConv";
-            this.bImportConv.Size = new System.Drawing.Size(75, 23);
-            this.bImportConv.TabIndex = 4;
-            this.bImportConv.Text = "Importar";
-            this.bImportConv.UseVisualStyleBackColor = true;
-            this.bImportConv.Click += new System.EventHandler(this.bImportConv_Click);
+            this.bImportConversation.Location = new System.Drawing.Point(413, 18);
+            this.bImportConversation.Margin = new System.Windows.Forms.Padding(1);
+            this.bImportConversation.Name = "bImportConversation";
+            this.bImportConversation.Size = new System.Drawing.Size(143, 20);
+            this.bImportConversation.TabIndex = 3;
+            this.bImportConversation.Text = "Cargar conversaciones";
+            this.bImportConversation.UseVisualStyleBackColor = true;
+            this.bImportConversation.Click += new System.EventHandler(this.bImportConversation_Click);
             // 
-            // bImportLetters
+            // label13
             // 
-            this.bImportLetters.Location = new System.Drawing.Point(231, 210);
-            this.bImportLetters.Name = "bImportLetters";
-            this.bImportLetters.Size = new System.Drawing.Size(75, 23);
-            this.bImportLetters.TabIndex = 3;
-            this.bImportLetters.Text = "Importar";
-            this.bImportLetters.UseVisualStyleBackColor = true;
-            this.bImportLetters.Click += new System.EventHandler(this.bImportLetters_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(94, 216);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Cartas de recomendacion:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(344, 216);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Conversaciones:";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tabPage1.Controls.Add(this.label12);
-            this.tabPage1.Controls.Add(this.rTBLetters);
-            this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.btnWatchComp);
-            this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.gBCartas);
-            this.tabPage1.Controls.Add(this.gBBuscar);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
-            this.tabPage1.Size = new System.Drawing.Size(637, 336);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Comprimir Cartas";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(149, 19);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(329, 24);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "Importar convrersaciones con reclutas";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(385, 68);
+            this.label12.Location = new System.Drawing.Point(384, 131);
             this.label12.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(180, 13);
@@ -222,18 +190,18 @@ namespace TalentHub
             // 
             // rTBLetters
             // 
-            this.rTBLetters.Location = new System.Drawing.Point(387, 91);
-            this.rTBLetters.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.rTBLetters.Location = new System.Drawing.Point(387, 152);
+            this.rTBLetters.Margin = new System.Windows.Forms.Padding(1);
             this.rTBLetters.Name = "rTBLetters";
             this.rTBLetters.ReadOnly = true;
-            this.rTBLetters.Size = new System.Drawing.Size(229, 222);
+            this.rTBLetters.Size = new System.Drawing.Size(229, 200);
             this.rTBLetters.TabIndex = 15;
             this.rTBLetters.Text = "";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(30, 303);
+            this.label11.Location = new System.Drawing.Point(30, 342);
             this.label11.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(321, 13);
@@ -242,8 +210,8 @@ namespace TalentHub
             // 
             // btnWatchComp
             // 
-            this.btnWatchComp.Location = new System.Drawing.Point(105, 271);
-            this.btnWatchComp.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnWatchComp.Location = new System.Drawing.Point(105, 310);
+            this.btnWatchComp.Margin = new System.Windows.Forms.Padding(1);
             this.btnWatchComp.Name = "btnWatchComp";
             this.btnWatchComp.Size = new System.Drawing.Size(154, 23);
             this.btnWatchComp.TabIndex = 14;
@@ -255,20 +223,20 @@ namespace TalentHub
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(142, 20);
+            this.label10.Location = new System.Drawing.Point(171, 101);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(359, 24);
+            this.label10.Size = new System.Drawing.Size(297, 24);
             this.label10.TabIndex = 13;
-            this.label10.Text = "Compresión de cartas de recomendación";
+            this.label10.Text = "Importar cartas de recomendación";
             // 
             // gBCartas
             // 
             this.gBCartas.Controls.Add(this.label8);
             this.gBCartas.Controls.Add(this.btnComprimirCartas);
-            this.gBCartas.Location = new System.Drawing.Point(22, 68);
-            this.gBCartas.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.gBCartas.Location = new System.Drawing.Point(22, 147);
+            this.gBCartas.Margin = new System.Windows.Forms.Padding(1);
             this.gBCartas.Name = "gBCartas";
-            this.gBCartas.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.gBCartas.Padding = new System.Windows.Forms.Padding(1);
             this.gBCartas.Size = new System.Drawing.Size(340, 74);
             this.gBCartas.TabIndex = 12;
             this.gBCartas.TabStop = false;
@@ -287,7 +255,7 @@ namespace TalentHub
             // btnComprimirCartas
             // 
             this.btnComprimirCartas.Location = new System.Drawing.Point(100, 24);
-            this.btnComprimirCartas.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnComprimirCartas.Margin = new System.Windows.Forms.Padding(1);
             this.btnComprimirCartas.Name = "btnComprimirCartas";
             this.btnComprimirCartas.Size = new System.Drawing.Size(115, 20);
             this.btnComprimirCartas.TabIndex = 3;
@@ -301,10 +269,10 @@ namespace TalentHub
             this.gBBuscar.Controls.Add(this.label7);
             this.gBBuscar.Controls.Add(this.btnDecompress);
             this.gBBuscar.Controls.Add(this.mTBBuscarDPI);
-            this.gBBuscar.Location = new System.Drawing.Point(22, 162);
-            this.gBBuscar.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.gBBuscar.Location = new System.Drawing.Point(22, 223);
+            this.gBBuscar.Margin = new System.Windows.Forms.Padding(1);
             this.gBBuscar.Name = "gBBuscar";
-            this.gBBuscar.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.gBBuscar.Padding = new System.Windows.Forms.Padding(1);
             this.gBBuscar.Size = new System.Drawing.Size(340, 85);
             this.gBBuscar.TabIndex = 11;
             this.gBBuscar.TabStop = false;
@@ -334,7 +302,7 @@ namespace TalentHub
             // btnDecompress
             // 
             this.btnDecompress.Location = new System.Drawing.Point(220, 53);
-            this.btnDecompress.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.btnDecompress.Margin = new System.Windows.Forms.Padding(1);
             this.btnDecompress.Name = "btnDecompress";
             this.btnDecompress.Size = new System.Drawing.Size(84, 20);
             this.btnDecompress.TabIndex = 6;
@@ -345,7 +313,7 @@ namespace TalentHub
             // mTBBuscarDPI
             // 
             this.mTBBuscarDPI.Location = new System.Drawing.Point(73, 55);
-            this.mTBBuscarDPI.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.mTBBuscarDPI.Margin = new System.Windows.Forms.Padding(1);
             this.mTBBuscarDPI.Mask = "0000000000000";
             this.mTBBuscarDPI.Name = "mTBBuscarDPI";
             this.mTBBuscarDPI.Size = new System.Drawing.Size(134, 20);
@@ -355,9 +323,9 @@ namespace TalentHub
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 380);
+            this.ClientSize = new System.Drawing.Size(665, 417);
             this.Controls.Add(this.tCMenu);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.tCMenu.ResumeLayout(false);
@@ -365,8 +333,7 @@ namespace TalentHub
             this.tPDataEntry.PerformLayout();
             this.tPImportFiles.ResumeLayout(false);
             this.tPImportFiles.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.gBCartas.ResumeLayout(false);
             this.gBCartas.PerformLayout();
             this.gBBuscar.ResumeLayout(false);
@@ -380,17 +347,10 @@ namespace TalentHub
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tCMenu;
         private System.Windows.Forms.TabPage tPDataEntry;
-        private System.Windows.Forms.TabPage tPImportFiles;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button bImportConv;
-        private System.Windows.Forms.Button bImportLetters;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tPImportFiles;
         private System.Windows.Forms.GroupBox gBCartas;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnComprimirCartas;
@@ -404,6 +364,10 @@ namespace TalentHub
         private System.Windows.Forms.RichTextBox rTBLetters;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button bImportConversation;
+        private System.Windows.Forms.Label label13;
     }
 }
 

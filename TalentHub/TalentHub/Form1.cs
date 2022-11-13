@@ -120,14 +120,8 @@ namespace TalentHub
             }
         }
 
-        private void bImportFiles_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnComprimirCartas_Click(object sender, EventArgs e)
         {
-            
             string directory = "";
 
             using (var FBD = new FolderBrowserDialog())
@@ -243,7 +237,7 @@ namespace TalentHub
                         LZW lzw = new LZW();        //Create new LZW instance
                         string FileName = directoryName + "/" + "REC-" + Convert.ToString(DPI) + "-" + Convert.ToString(i) + ".txt";
                         string decompressedLetter = lzw.Decompress(codes);
-                        System.IO.File.WriteAllText(FileName, decompressedLetter);   //Create file;
+                        File.WriteAllText(FileName, decompressedLetter);   //Create file;
                         rTBLetters.Text += decompressedLetter + "\n\n"; //**NEW**: ADD TO RICH TEXT BOX
                         scodes.Clear();
                         codes.Clear();
@@ -278,12 +272,7 @@ namespace TalentHub
             }
         }
 
-        private void bImportLetters_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bImportConv_Click(object sender, EventArgs e)
+        private void bImportConversation_Click(object sender, EventArgs e)
         {
 
         }
