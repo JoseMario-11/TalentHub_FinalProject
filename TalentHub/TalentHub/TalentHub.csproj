@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Algorithm\Huffman.cs" />
     <Compile Include="Algorithm\LZW.cs" />
+    <Compile Include="Algorithm\RSA\Company.cs" />
+    <Compile Include="Algorithm\RSA\Signature.cs" />
     <Compile Include="Applicant.cs" />
     <Compile Include="AVL\AVLclass.cs" />
     <Compile Include="AVL\Node.cs" />
@@ -70,6 +73,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Data.cs" />
+    <Compile Include="Helpers\Recluiters.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
