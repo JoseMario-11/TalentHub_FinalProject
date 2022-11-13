@@ -264,5 +264,131 @@ namespace TalentHub.AVL
             }
             return null;
         }
+
+        public bool Remove(Applicant applicant)
+        {
+            bool verification = false;
+            Remove(ref Root, applicant, ref verification);
+            return verification;
+        }
+
+        void Remove(ref Node root, Applicant applicant, ref bool verification)
+        {
+            if (root != null)
+            {
+                if (applicant.DPI.CompareTo(root.element.DPI) == 0)
+                {
+                    if (root.left == null && root.right == null)
+                    {
+                        root = null;
+                        nodeCount--;
+                    }
+                    else if (root.left != null && root.right != null)
+                    {
+                        var aux = LeftGreater(root);
+                        aux.right = root.right;
+                        aux.left = root.left;
+                        root = aux;
+                        nodeCount--;
+                    }
+                    else
+                    {
+                        if (root.right != null)
+                        {
+                            root = root.right;
+                            nodeCount--;
+                        }
+                        else
+                        {
+                            root = root.left;
+                            nodeCount--;
+                        }
+                    }
+                    verification = true;
+                }
+                else if (applicant.DPI.CompareTo(root.element.DPI) > 0)
+                {
+                    Remove(ref root.right, applicant, ref verification);
+                }
+                else
+                {
+                    Remove(ref root.left, applicant, ref verification);
+                }
+
+                int BF = calculateFactor(root);
+
+                if (BF > 1)
+                {
+                    if (calculateFactor(root.left) < 0)
+                    {
+                        root.left = LeftRotation(root.left);
+                        root = RightRotation(root);
+                    }
+                    else
+                    {
+                        root = RightRotation(root);
+                    }
+                }
+                if (BF < -1)
+                {
+                    if (calculateFactor(root.right) > 0)
+                    {
+                        root.right = RightRotation(root.right);
+                        root = LeftRotation(root);
+                    }
+                    else
+                    {
+                        root = LeftRotation(root);
+                    }
+                }
+            }
+        }
+
+        Node LeftGreater(Node root)
+        {
+            Node greater = null;
+            Node aux = root;
+            if (aux.left.right == null)
+            {
+                if (aux.left != null)
+                {
+                    greater = aux.left;
+                    aux.left = aux.left.left;
+                }
+                else
+                {
+                    greater = aux.left;
+                    aux.left = null;
+                }
+            }
+            else
+            {
+                aux = root.left;
+                var verification = true;
+                while (aux != null && verification)
+                {
+                    if (aux.right.right == null)
+                    {
+                        if (aux.right.left != null)
+                        {
+                            greater = aux.right;
+                            aux.right = aux.right.left;
+                            verification = false;
+                        }
+                        else
+                        {
+                            greater = aux.right;
+                            aux.right = null;
+                            verification = false;
+                        }
+                    }
+                    else
+                    {
+                        aux = aux.right;
+                    }
+                }
+            }
+            return greater;
+        }
     }
 }

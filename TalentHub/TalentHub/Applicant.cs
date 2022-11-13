@@ -20,10 +20,6 @@ namespace TalentHub
         public string[] Companies { get; set; }
 
         public string Recluiter { get; set; } 
-
-       // [NonSerialized]
-
-        //public Dictionary<int, RecommendationLetter> RecommendationLettersInfo = new Dictionary<int, RecommendationLetter>();
         
         //[NonSerialized]
 

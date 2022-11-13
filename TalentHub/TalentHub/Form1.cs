@@ -60,7 +60,7 @@ namespace TalentHub
                             AVL.Edit(AVL.Root, applicant);
                             break;
                         case "delete":
-                            AVL.Delete(AVL.Root, applicant);
+                            AVL.Remove(applicant);
                             break;
                     }
 
@@ -86,7 +86,7 @@ namespace TalentHub
                 }
                 else //A companie already exist and add more DPI recluiters
                 {
-                    Data.Instance.DPICompanies[companie] = Data.Instance.DPICompanies[companie] + applicant.DPI;
+                    Data.Instance.DPICompanies[companie] += applicant.DPI;
                 }
             }
         }
