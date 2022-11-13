@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using System.IO;
@@ -13,6 +14,7 @@ using TalentHub.AVL;
 using TalentHub.Helpers;
 using TalentHub.Algorithm;
 using TalentHub.Algorithm.DES;
+using System.Text.RegularExpressions;
 
 namespace TalentHub
 {
@@ -119,6 +121,169 @@ namespace TalentHub
         }
 
         private void bImportFiles_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnComprimirCartas_Click(object sender, EventArgs e)
+        {
+            
+            string directory = "";
+
+            using (var FBD = new FolderBrowserDialog())
+            {
+                DialogResult result = FBD.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(FBD.SelectedPath))
+                {
+                    directory = FBD.SelectedPath;
+                }
+            }
+
+            if (directory == "")
+            {
+                MessageBox.Show("Fallo al cargar archivos: no se ha seleccionado ninguún directorio.", "Error");
+            }
+            else
+            {
+                List<string> Letters = new List<string>();
+                Queue<string> dpi = new Queue<string>();
+
+                Regex lValidation = new Regex(@"REC-\d+.-\d+");
+
+                foreach (string file in Directory.EnumerateFiles(directory, "*.txt"))
+                {
+                    if (lValidation.IsMatch(file))
+                    {
+                        Letters.Add(File.ReadAllText(file)); //Add content of letter to list
+
+                        Regex expression = new Regex(@"(?<=REC-)\d+");      //Get # DPI
+                        var result = expression.Match(file);
+                        dpi.Enqueue(Convert.ToString(result));          //Add DPI to list
+                    }
+                }
+
+                List<string> EncodedLetters = new List<string>();
+
+                if (!Directory.Exists("encoded-inputs"))
+                {
+                    Directory.CreateDirectory("encoded-inputs");    //Create folder
+                }
+
+                int counter = 1;
+                foreach (string text in Letters)
+                {
+                    LZW encode = new LZW();     //Create a new instance for LZW
+                    string xDpi = dpi.Peek();       //Take one of the DPIs on the queue
+                    string FileName = @"encoded-inputs\" + "compressed-" + xDpi + "-" + counter.ToString() + ".txt";
+                    File.WriteAllText(FileName, encode.Compress(text));   //Create file
+                    dpi.Dequeue();
+
+                    if (dpi.Count() != 0)       //Verify if queue is not empty
+                    {
+                        if (xDpi == dpi.Peek())
+                        {
+                            counter++;
+                        }
+                        else
+                        {
+                            counter = 1;
+                        }
+                    }
+
+                }
+                MessageBox.Show("Se han comprimido todas las cartas de recomendación.");
+            }
+        }
+
+        private void btnDecompress_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                rTBLetters.Clear();
+                long DPI = Convert.ToInt64(mTBBuscarDPI.Text);
+                bool verify = false;
+
+                List<string> FilteredFiles = new List<string>();
+                foreach (string file in Directory.EnumerateFiles("encoded-inputs", "*.txt"))    //Iterate all files from directory
+                {
+                    if (file.Contains(Convert.ToString(DPI)))
+                    {
+                        FilteredFiles.Add(File.ReadAllText(file));  //If file name contains the DPI, add to list
+                        verify = true;
+                    }
+                }
+
+                if (verify)
+                {
+                    List<string> scodes = new List<string>();   //List that will contain the string codes
+                    List<int> codes = new List<int>();      //List that will contain one code for each position
+
+                    string directoryName = "decompressed-inputs/REC-" + Convert.ToString(DPI);
+                    if (!Directory.Exists("decompressed-inputs"))
+                    {
+                        Directory.CreateDirectory("decompressed-inputs");    //Create folder          
+                    }
+                    if (!Directory.Exists(directoryName))
+                    {
+                        Directory.CreateDirectory(directoryName);    //Create folder
+                    }
+
+                    int i = 1;
+
+                    foreach (string compressed in FilteredFiles)
+                    {
+                        scodes = compressed.Split(',').ToList();    //Split codes by ','
+
+                        foreach (string item in scodes)
+                        {
+                            codes.Add(Convert.ToInt32(item));       //Add each string to list, converting it to integer                
+                        }
+
+                        LZW lzw = new LZW();        //Create new LZW instance
+                        string FileName = directoryName + "/" + "REC-" + Convert.ToString(DPI) + "-" + Convert.ToString(i) + ".txt";
+                        string decompressedLetter = lzw.Decompress(codes);
+                        System.IO.File.WriteAllText(FileName, decompressedLetter);   //Create file;
+                        rTBLetters.Text += decompressedLetter + "\n\n"; //**NEW**: ADD TO RICH TEXT BOX
+                        scodes.Clear();
+                        codes.Clear();
+                        i++;
+                    }
+
+                    MessageBox.Show("Se han descomprimido las cartas de recomendación para el DPI: " + DPI.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("No se han encontrado cartas de recomendación para el DPI ingresado.");
+                }
+
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("ERROR: Ha ocurrido un problema con la descompresión. Por favor, reinicia el sistema.");
+            }
+        }
+
+        private void btnWatchComp_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists("encoded-inputs"))
+            {
+                Process.Start("explorer.exe", "encoded-inputs");
+            }
+            else
+            {
+                MessageBox.Show("La carpeta de cartas de recomendación comprimidas no existe aún.");
+            }
+        }
+
+        private void bImportLetters_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bImportConv_Click(object sender, EventArgs e)
         {
 
         }
