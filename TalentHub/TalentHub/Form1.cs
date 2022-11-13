@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using System.IO;
@@ -193,7 +194,7 @@ namespace TalentHub
                     List<string> scodes = new List<string>();   //List that will contain the string codes
                     List<int> codes = new List<int>();      //List that will contain one code for each position
 
-                    string directoryName = "decompressed-inputs/decompressed-REC-" + Convert.ToString(DPI);
+                    string directoryName = "decompressed-inputs/REC-" + Convert.ToString(DPI);
                     if (!Directory.Exists("decompressed-inputs"))
                     {
                         Directory.CreateDirectory("decompressed-inputs");    //Create folder          
@@ -215,7 +216,7 @@ namespace TalentHub
                         }
 
                         LZW lzw = new LZW();        //Create new LZW instance
-                        string FileName = directoryName + "/" + "decompressed-REC-" + Convert.ToString(DPI) + "-" + Convert.ToString(i) + ".txt";
+                        string FileName = directoryName + "/" + "REC-" + Convert.ToString(DPI) + "-" + Convert.ToString(i) + ".txt";
                         string decompressedLetter = lzw.Decompress(codes);
                         System.IO.File.WriteAllText(FileName, decompressedLetter);   //Create file;
                         rTBLetters.Text += decompressedLetter + "\n\n"; //**NEW**: ADD TO RICH TEXT BOX
@@ -238,6 +239,23 @@ namespace TalentHub
 
                 MessageBox.Show("ERROR: Ha ocurrido un problema con la descompresión. Por favor, reinicia el sistema.");
             }
+        }
+
+        private void btnWatchComp_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists("encoded-inputs"))
+            {
+                Process.Start("explorer.exe", "encoded-inputs");
+            }
+            else
+            {
+                MessageBox.Show("La carpeta de cartas de recomendación comprimidas no existe aún.");
+            }
+        }
+
+        private void bImportLetters_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

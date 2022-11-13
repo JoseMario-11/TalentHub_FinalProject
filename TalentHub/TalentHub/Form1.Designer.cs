@@ -175,6 +175,7 @@ namespace TalentHub
             this.bImportLetters.TabIndex = 3;
             this.bImportLetters.Text = "Importar";
             this.bImportLetters.UseVisualStyleBackColor = true;
+            this.bImportLetters.Click += new System.EventHandler(this.bImportLetters_Click);
             // 
             // label4
             // 
@@ -217,7 +218,6 @@ namespace TalentHub
             // 
             this.gBCartas.Controls.Add(this.label8);
             this.gBCartas.Controls.Add(this.btnComprimirCartas);
-            this.gBCartas.Enabled = false;
             this.gBCartas.Location = new System.Drawing.Point(51, 152);
             this.gBCartas.Name = "gBCartas";
             this.gBCartas.Size = new System.Drawing.Size(793, 166);
@@ -241,7 +241,6 @@ namespace TalentHub
             this.gBBuscar.Controls.Add(this.label7);
             this.gBBuscar.Controls.Add(this.btnDecompress);
             this.gBBuscar.Controls.Add(this.mTBBuscarDPI);
-            this.gBBuscar.Enabled = false;
             this.gBBuscar.Location = new System.Drawing.Point(51, 362);
             this.gBBuscar.Name = "gBBuscar";
             this.gBBuscar.Size = new System.Drawing.Size(793, 190);
@@ -314,6 +313,7 @@ namespace TalentHub
             this.btnWatchComp.TabIndex = 14;
             this.btnWatchComp.Text = "Ver cartas comprimidas";
             this.btnWatchComp.UseVisualStyleBackColor = true;
+            this.btnWatchComp.Click += new System.EventHandler(this.btnWatchComp_Click);
             // 
             // label11
             // 
