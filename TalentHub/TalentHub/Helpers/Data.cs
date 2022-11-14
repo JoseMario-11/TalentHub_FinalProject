@@ -30,5 +30,7 @@ namespace TalentHub.Helpers
         public string Password = "DBDCJM22";
 
         public Applicant _Applicant;
+
+        public string Company;
     }
 }

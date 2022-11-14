@@ -61,7 +61,6 @@ namespace TalentHub
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.bShowConversations = new System.Windows.Forms.Button();
-            this.mTBConversationsDPI = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.rTBConversations = new System.Windows.Forms.RichTextBox();
             this.tPRecommendationLetters = new System.Windows.Forms.TabPage();
@@ -70,14 +69,19 @@ namespace TalentHub
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnDecompress = new System.Windows.Forms.Button();
-            this.mTBBuscarDPI = new System.Windows.Forms.MaskedTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.tPCompleteProcess = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.bVerifyCompany = new System.Windows.Forms.Button();
-            this.bVerifyApplicant = new System.Windows.Forms.Button();
-            this.tPEndProcess = new System.Windows.Forms.TabPage();
+            this.tPResolution = new System.Windows.Forms.TabPage();
             this.bStartRecluitProcess = new System.Windows.Forms.Button();
+            this.tBConversationsDPI = new System.Windows.Forms.TextBox();
+            this.bNextConversationPage = new System.Windows.Forms.Button();
+            this.bNextRecomendationPage = new System.Windows.Forms.Button();
+            this.tBLettersDPI = new System.Windows.Forms.TextBox();
+            this.bNextResolutionPage = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.tCMenu.SuspendLayout();
             this.tPDataEntry.SuspendLayout();
             this.tPImportFiles.SuspendLayout();
@@ -90,6 +94,7 @@ namespace TalentHub
             this.gBBuscar.SuspendLayout();
             this.tPCompleteProcess.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.tPResolution.SuspendLayout();
             this.SuspendLayout();
             // 
             // tCMenu
@@ -97,16 +102,17 @@ namespace TalentHub
             this.tCMenu.Controls.Add(this.tPDataEntry);
             this.tCMenu.Controls.Add(this.tPImportFiles);
             this.tCMenu.Controls.Add(this.tPStartProcess);
+            this.tCMenu.Controls.Add(this.tPResolution);
             this.tCMenu.Controls.Add(this.tPConversations);
             this.tCMenu.Controls.Add(this.tPRecommendationLetters);
             this.tCMenu.Controls.Add(this.tPCompleteProcess);
-            this.tCMenu.Controls.Add(this.tPEndProcess);
             this.tCMenu.Location = new System.Drawing.Point(8, 9);
             this.tCMenu.Margin = new System.Windows.Forms.Padding(2);
             this.tCMenu.Name = "tCMenu";
             this.tCMenu.SelectedIndex = 0;
-            this.tCMenu.Size = new System.Drawing.Size(645, 397);
+            this.tCMenu.Size = new System.Drawing.Size(645, 403);
             this.tCMenu.TabIndex = 0;
+            this.tCMenu.SelectedIndexChanged += new System.EventHandler(this.tCMenu_SelectedIndexChanged);
             // 
             // tPDataEntry
             // 
@@ -117,7 +123,7 @@ namespace TalentHub
             this.tPDataEntry.Margin = new System.Windows.Forms.Padding(2);
             this.tPDataEntry.Name = "tPDataEntry";
             this.tPDataEntry.Padding = new System.Windows.Forms.Padding(2);
-            this.tPDataEntry.Size = new System.Drawing.Size(637, 371);
+            this.tPDataEntry.Size = new System.Drawing.Size(637, 377);
             this.tPDataEntry.TabIndex = 0;
             this.tPDataEntry.Text = "Data entry";
             this.tPDataEntry.UseVisualStyleBackColor = true;
@@ -161,7 +167,7 @@ namespace TalentHub
             this.tPImportFiles.Margin = new System.Windows.Forms.Padding(1);
             this.tPImportFiles.Name = "tPImportFiles";
             this.tPImportFiles.Padding = new System.Windows.Forms.Padding(1);
-            this.tPImportFiles.Size = new System.Drawing.Size(637, 371);
+            this.tPImportFiles.Size = new System.Drawing.Size(637, 377);
             this.tPImportFiles.TabIndex = 2;
             this.tPImportFiles.Text = "Cargar documentos";
             // 
@@ -300,7 +306,7 @@ namespace TalentHub
             this.tPStartProcess.Controls.Add(this.label15);
             this.tPStartProcess.Location = new System.Drawing.Point(4, 22);
             this.tPStartProcess.Name = "tPStartProcess";
-            this.tPStartProcess.Size = new System.Drawing.Size(637, 371);
+            this.tPStartProcess.Size = new System.Drawing.Size(637, 377);
             this.tPStartProcess.TabIndex = 6;
             this.tPStartProcess.Text = "Proceso";
             this.tPStartProcess.UseVisualStyleBackColor = true;
@@ -396,23 +402,24 @@ namespace TalentHub
             // 
             // tPConversations
             // 
+            this.tPConversations.Controls.Add(this.bNextConversationPage);
             this.tPConversations.Controls.Add(this.groupBox2);
             this.tPConversations.Controls.Add(this.label3);
             this.tPConversations.Controls.Add(this.rTBConversations);
             this.tPConversations.Location = new System.Drawing.Point(4, 22);
             this.tPConversations.Name = "tPConversations";
-            this.tPConversations.Size = new System.Drawing.Size(637, 371);
+            this.tPConversations.Size = new System.Drawing.Size(637, 377);
             this.tPConversations.TabIndex = 3;
             this.tPConversations.Text = "Conversaciones";
             this.tPConversations.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tBConversationsDPI);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.bShowConversations);
-            this.groupBox2.Controls.Add(this.mTBConversationsDPI);
-            this.groupBox2.Location = new System.Drawing.Point(134, 23);
+            this.groupBox2.Location = new System.Drawing.Point(135, 11);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(1);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(1);
@@ -428,8 +435,8 @@ namespace TalentHub
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(350, 26);
             this.label4.TabIndex = 8;
-            this.label4.Text = "*Introduce el DPI del recluta para visualizar las conversaciones de este. Podrás " +
-    "observar las conversaciones en el recuadro de abajo.";
+            this.label4.Text = "En este espacio se pueden revisar las conversaciones que se han establecido con e" +
+    "l recluta con anterioridad.";
             // 
             // label5
             // 
@@ -452,19 +459,10 @@ namespace TalentHub
             this.bShowConversations.UseVisualStyleBackColor = true;
             this.bShowConversations.Click += new System.EventHandler(this.bShowConversations_Click);
             // 
-            // mTBConversationsDPI
-            // 
-            this.mTBConversationsDPI.Location = new System.Drawing.Point(115, 54);
-            this.mTBConversationsDPI.Margin = new System.Windows.Forms.Padding(1);
-            this.mTBConversationsDPI.Mask = "0000000000000";
-            this.mTBConversationsDPI.Name = "mTBConversationsDPI";
-            this.mTBConversationsDPI.Size = new System.Drawing.Size(87, 20);
-            this.mTBConversationsDPI.TabIndex = 0;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 128);
+            this.label3.Location = new System.Drawing.Point(25, 109);
             this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(135, 13);
@@ -473,7 +471,7 @@ namespace TalentHub
             // 
             // rTBConversations
             // 
-            this.rTBConversations.Location = new System.Drawing.Point(28, 149);
+            this.rTBConversations.Location = new System.Drawing.Point(28, 123);
             this.rTBConversations.Margin = new System.Windows.Forms.Padding(1);
             this.rTBConversations.Name = "rTBConversations";
             this.rTBConversations.ReadOnly = true;
@@ -483,19 +481,20 @@ namespace TalentHub
             // 
             // tPRecommendationLetters
             // 
+            this.tPRecommendationLetters.Controls.Add(this.bNextRecomendationPage);
             this.tPRecommendationLetters.Controls.Add(this.rTBLetters);
             this.tPRecommendationLetters.Controls.Add(this.gBBuscar);
             this.tPRecommendationLetters.Controls.Add(this.label12);
             this.tPRecommendationLetters.Location = new System.Drawing.Point(4, 22);
             this.tPRecommendationLetters.Name = "tPRecommendationLetters";
-            this.tPRecommendationLetters.Size = new System.Drawing.Size(637, 371);
+            this.tPRecommendationLetters.Size = new System.Drawing.Size(637, 377);
             this.tPRecommendationLetters.TabIndex = 7;
             this.tPRecommendationLetters.Text = "Cartas de recomendación";
             this.tPRecommendationLetters.UseVisualStyleBackColor = true;
             // 
             // rTBLetters
             // 
-            this.rTBLetters.Location = new System.Drawing.Point(18, 157);
+            this.rTBLetters.Location = new System.Drawing.Point(18, 129);
             this.rTBLetters.Margin = new System.Windows.Forms.Padding(1);
             this.rTBLetters.Name = "rTBLetters";
             this.rTBLetters.ReadOnly = true;
@@ -505,34 +504,33 @@ namespace TalentHub
             // 
             // gBBuscar
             // 
+            this.gBBuscar.Controls.Add(this.tBLettersDPI);
             this.gBBuscar.Controls.Add(this.label9);
             this.gBBuscar.Controls.Add(this.label7);
             this.gBBuscar.Controls.Add(this.btnDecompress);
-            this.gBBuscar.Controls.Add(this.mTBBuscarDPI);
-            this.gBBuscar.Location = new System.Drawing.Point(141, 29);
+            this.gBBuscar.Location = new System.Drawing.Point(124, 16);
             this.gBBuscar.Margin = new System.Windows.Forms.Padding(1);
             this.gBBuscar.Name = "gBBuscar";
             this.gBBuscar.Padding = new System.Windows.Forms.Padding(1);
-            this.gBBuscar.Size = new System.Drawing.Size(340, 85);
+            this.gBBuscar.Size = new System.Drawing.Size(398, 85);
             this.gBBuscar.TabIndex = 11;
             this.gBBuscar.TabStop = false;
             this.gBBuscar.Text = "Descompresión de cartas";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(15, 20);
             this.label9.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(315, 26);
+            this.label9.Size = new System.Drawing.Size(366, 26);
             this.label9.TabIndex = 8;
-            this.label9.Text = "*Introduce el DPI para descomprimir las cartas de recomendación\r\ndel recluta. Pod" +
-    "rás observar sus cartas a la derecha.";
+            this.label9.Text = "En este espacio se pueden visualizar las cartas de recomendación que el recluta h" +
+    "a enviado con anterioridad al recluta.\r\n";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(27, 55);
+            this.label7.Location = new System.Drawing.Point(51, 58);
             this.label7.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(28, 13);
@@ -541,28 +539,19 @@ namespace TalentHub
             // 
             // btnDecompress
             // 
-            this.btnDecompress.Location = new System.Drawing.Point(220, 53);
+            this.btnDecompress.Location = new System.Drawing.Point(244, 56);
             this.btnDecompress.Margin = new System.Windows.Forms.Padding(1);
             this.btnDecompress.Name = "btnDecompress";
             this.btnDecompress.Size = new System.Drawing.Size(84, 20);
             this.btnDecompress.TabIndex = 6;
-            this.btnDecompress.Text = "Descomprimir";
+            this.btnDecompress.Text = "Mostrar";
             this.btnDecompress.UseVisualStyleBackColor = true;
             this.btnDecompress.Click += new System.EventHandler(this.btnDecompress_Click);
-            // 
-            // mTBBuscarDPI
-            // 
-            this.mTBBuscarDPI.Location = new System.Drawing.Point(73, 55);
-            this.mTBBuscarDPI.Margin = new System.Windows.Forms.Padding(1);
-            this.mTBBuscarDPI.Mask = "0000000000000";
-            this.mTBBuscarDPI.Name = "mTBBuscarDPI";
-            this.mTBBuscarDPI.Size = new System.Drawing.Size(134, 20);
-            this.mTBBuscarDPI.TabIndex = 0;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(15, 136);
+            this.label12.Location = new System.Drawing.Point(15, 108);
             this.label12.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(180, 13);
@@ -572,11 +561,10 @@ namespace TalentHub
             // tPCompleteProcess
             // 
             this.tPCompleteProcess.Controls.Add(this.groupBox3);
-            this.tPCompleteProcess.Controls.Add(this.bVerifyApplicant);
             this.tPCompleteProcess.Location = new System.Drawing.Point(4, 22);
             this.tPCompleteProcess.Margin = new System.Windows.Forms.Padding(2);
             this.tPCompleteProcess.Name = "tPCompleteProcess";
-            this.tPCompleteProcess.Size = new System.Drawing.Size(637, 371);
+            this.tPCompleteProcess.Size = new System.Drawing.Size(637, 377);
             this.tPCompleteProcess.TabIndex = 5;
             this.tPCompleteProcess.Text = "Verificar candidato y completar proceso";
             this.tPCompleteProcess.UseVisualStyleBackColor = true;
@@ -584,18 +572,19 @@ namespace TalentHub
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.bVerifyCompany);
-            this.groupBox3.Location = new System.Drawing.Point(59, 78);
+            this.groupBox3.Location = new System.Drawing.Point(59, 36);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(514, 266);
+            this.groupBox3.Size = new System.Drawing.Size(514, 308);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Comunicación com la empresa interesada";
             // 
             // bVerifyCompany
             // 
-            this.bVerifyCompany.Location = new System.Drawing.Point(151, 212);
+            this.bVerifyCompany.Enabled = false;
+            this.bVerifyCompany.Location = new System.Drawing.Point(139, 133);
             this.bVerifyCompany.Margin = new System.Windows.Forms.Padding(2);
             this.bVerifyCompany.Name = "bVerifyCompany";
             this.bVerifyCompany.Size = new System.Drawing.Size(194, 37);
@@ -604,24 +593,17 @@ namespace TalentHub
             this.bVerifyCompany.UseVisualStyleBackColor = true;
             this.bVerifyCompany.Click += new System.EventHandler(this.bVerifyCompany_Click);
             // 
-            // bVerifyApplicant
+            // tPResolution
             // 
-            this.bVerifyApplicant.Location = new System.Drawing.Point(210, 24);
-            this.bVerifyApplicant.Margin = new System.Windows.Forms.Padding(2);
-            this.bVerifyApplicant.Name = "bVerifyApplicant";
-            this.bVerifyApplicant.Size = new System.Drawing.Size(200, 33);
-            this.bVerifyApplicant.TabIndex = 0;
-            this.bVerifyApplicant.Text = "Verificar información del recluta";
-            this.bVerifyApplicant.UseVisualStyleBackColor = true;
-            // 
-            // tPEndProcess
-            // 
-            this.tPEndProcess.Location = new System.Drawing.Point(4, 22);
-            this.tPEndProcess.Name = "tPEndProcess";
-            this.tPEndProcess.Size = new System.Drawing.Size(637, 371);
-            this.tPEndProcess.TabIndex = 8;
-            this.tPEndProcess.Text = "Resolución";
-            this.tPEndProcess.UseVisualStyleBackColor = true;
+            this.tPResolution.Controls.Add(this.label19);
+            this.tPResolution.Controls.Add(this.label18);
+            this.tPResolution.Controls.Add(this.bNextResolutionPage);
+            this.tPResolution.Location = new System.Drawing.Point(4, 22);
+            this.tPResolution.Name = "tPResolution";
+            this.tPResolution.Size = new System.Drawing.Size(637, 377);
+            this.tPResolution.TabIndex = 8;
+            this.tPResolution.Text = "Resolución";
+            this.tPResolution.UseVisualStyleBackColor = true;
             // 
             // bStartRecluitProcess
             // 
@@ -633,6 +615,75 @@ namespace TalentHub
             this.bStartRecluitProcess.UseVisualStyleBackColor = true;
             this.bStartRecluitProcess.Visible = false;
             this.bStartRecluitProcess.Click += new System.EventHandler(this.bStartRecluitProcess_Click);
+            // 
+            // tBConversationsDPI
+            // 
+            this.tBConversationsDPI.Enabled = false;
+            this.tBConversationsDPI.Location = new System.Drawing.Point(101, 51);
+            this.tBConversationsDPI.Name = "tBConversationsDPI";
+            this.tBConversationsDPI.Size = new System.Drawing.Size(87, 20);
+            this.tBConversationsDPI.TabIndex = 9;
+            // 
+            // bNextConversationPage
+            // 
+            this.bNextConversationPage.Enabled = false;
+            this.bNextConversationPage.Location = new System.Drawing.Point(259, 338);
+            this.bNextConversationPage.Name = "bNextConversationPage";
+            this.bNextConversationPage.Size = new System.Drawing.Size(75, 23);
+            this.bNextConversationPage.TabIndex = 20;
+            this.bNextConversationPage.Text = "Siguiente";
+            this.bNextConversationPage.UseVisualStyleBackColor = true;
+            this.bNextConversationPage.Click += new System.EventHandler(this.bNextConversationPage_Click);
+            // 
+            // bNextRecomendationPage
+            // 
+            this.bNextRecomendationPage.Enabled = false;
+            this.bNextRecomendationPage.Location = new System.Drawing.Point(260, 342);
+            this.bNextRecomendationPage.Name = "bNextRecomendationPage";
+            this.bNextRecomendationPage.Size = new System.Drawing.Size(75, 23);
+            this.bNextRecomendationPage.TabIndex = 21;
+            this.bNextRecomendationPage.Text = "Siguiente";
+            this.bNextRecomendationPage.UseVisualStyleBackColor = true;
+            this.bNextRecomendationPage.Click += new System.EventHandler(this.bNextRecomendationPage_Click);
+            // 
+            // tBLettersDPI
+            // 
+            this.tBLettersDPI.Enabled = false;
+            this.tBLettersDPI.Location = new System.Drawing.Point(92, 55);
+            this.tBLettersDPI.Name = "tBLettersDPI";
+            this.tBLettersDPI.Size = new System.Drawing.Size(100, 20);
+            this.tBLettersDPI.TabIndex = 9;
+            // 
+            // bNextResolutionPage
+            // 
+            this.bNextResolutionPage.Enabled = false;
+            this.bNextResolutionPage.Location = new System.Drawing.Point(230, 188);
+            this.bNextResolutionPage.Name = "bNextResolutionPage";
+            this.bNextResolutionPage.Size = new System.Drawing.Size(119, 48);
+            this.bNextResolutionPage.TabIndex = 21;
+            this.bNextResolutionPage.Text = "Validar y continuar";
+            this.bNextResolutionPage.UseVisualStyleBackColor = true;
+            this.bNextResolutionPage.Click += new System.EventHandler(this.bNextResolutionPage_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(151, 70);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(300, 31);
+            this.label18.TabIndex = 22;
+            this.label18.Text = "Validación de requisitos";
+            // 
+            // label19
+            // 
+            this.label19.Location = new System.Drawing.Point(88, 120);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(423, 56);
+            this.label19.TabIndex = 23;
+            this.label19.Text = "A continuación se realiza el proceso de validación si el recluta que inició con e" +
+    "l procedimiento cumple con los requisitos mínimos para establecer comunicación c" +
+    "on la empresa de interés.";
             // 
             // Form1
             // 
@@ -662,6 +713,8 @@ namespace TalentHub
             this.gBBuscar.PerformLayout();
             this.tPCompleteProcess.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.tPResolution.ResumeLayout(false);
+            this.tPResolution.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -681,7 +734,6 @@ namespace TalentHub
         private System.Windows.Forms.GroupBox gBBuscar;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnDecompress;
-        private System.Windows.Forms.MaskedTextBox mTBBuscarDPI;
         private System.Windows.Forms.Button btnWatchComp;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
@@ -696,7 +748,6 @@ namespace TalentHub
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button bShowConversations;
-        private System.Windows.Forms.MaskedTextBox mTBConversationsDPI;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox rTBConversations;
         private System.Windows.Forms.TabPage tPCompleteProcess;
@@ -706,18 +757,24 @@ namespace TalentHub
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox cBCompanie;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button bVerifyApplicant;
         private System.Windows.Forms.Button bWatchConversations;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TabPage tPStartProcess;
         private System.Windows.Forms.TabPage tPRecommendationLetters;
-        private System.Windows.Forms.TabPage tPEndProcess;
+        private System.Windows.Forms.TabPage tPResolution;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button bSearchApplicant;
         private System.Windows.Forms.MaskedTextBox mTBApplicantDPI;
         private System.Windows.Forms.RichTextBox rTBApplicantInformation;
         private System.Windows.Forms.TextBox tBSelectedRecluiter;
         private System.Windows.Forms.Button bStartRecluitProcess;
+        private System.Windows.Forms.TextBox tBConversationsDPI;
+        private System.Windows.Forms.Button bNextConversationPage;
+        private System.Windows.Forms.Button bNextRecomendationPage;
+        private System.Windows.Forms.TextBox tBLettersDPI;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button bNextResolutionPage;
     }
 }
 
