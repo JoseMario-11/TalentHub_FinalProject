@@ -1,0 +1,5 @@
+﻿INSERT;{"name":"Juan","dpi":"7007651463911","datebirth":"1962-04-27T23:58:00.915Z","address":"Zacapa","companies":["Claro", "Cemaco","Helados Sarita"],"recluiter":"Oscar Fernandez"}
+INSERT;{"name":"Pablo","dpi":"4365789811211","datebirth":"1997-02-13T23:58:00.915Z","address":"Guatemala","companies":["Pizza Hut", "Cemaco", "Cerveceria Centroamericana"],"recluiter":"Martin Martinez"}
+INSERT;{"name":"Sofia","dpi":"8493875940321","datebirth":"2002-01-12T23:58:00.915Z","address":"Guatemala","companies":["Claro", "Pizza Hut", "Banco Industrial"],"recluiter":"Pedro Pascal"}
+INSERT;{"name":"Jorge","dpi":"4059687435821","datebirth":"1978-11-9T23:58:00.915Z","address":"Retalhuleu","companies":["Tigo", "Helados Sarita", "Banco G&T", "Telus"],"recluiter":"Dante Rodriguez"}
+INSERT;{"name":"Goku","dpi":"9485904763542","datebirth":"1990-10-10T23:58:00.915Z","address":"Guatemala","companies":["Cerveceria Centroamericana", "Telus", "Banco Industrial", "Click"],"recluiter":"Ricardo Arjona"}
