@@ -27,7 +27,7 @@ namespace TalentHub
         public Form1()
         {
             InitializeComponent();
-            
+            actualPage = tPDataEntry;
         }
 
         //Elements used to open a .csv file with information about applicant records
@@ -37,6 +37,8 @@ namespace TalentHub
         public AVLclass AVL = new AVLclass();
         public Recluiters Rec = new Recluiters();
         public SHA256 alg = SHA256.Create();
+        public bool inProcess = false;
+        public TabPage actualPage;
 
         // Function dedicated to convert a string into json format  
         public void JsonConverter(StreamReader file)
@@ -72,6 +74,14 @@ namespace TalentHub
                     UpdateCompanieInformation(applicant);
                 }
             }
+
+            Applicant prueba = new Applicant();
+            prueba.Address = "no se";
+            prueba.Companies = new string[]{ "Hane and Sons","Littel   Dickinson"};
+            prueba.DPI = "3050203740117";
+            prueba.DateBirth = "04/11/2002";
+            prueba.Recluiter = "Owen Corwin";
+            AVL.Insert(AVL.Root, prueba);
             //Inicialization of tree companies to compress DPI
             UpdateTreeCompanies();
 
@@ -124,15 +134,13 @@ namespace TalentHub
                 AVL.getAll(AVL.Root);
                 Rec.InsertInfo(AVL.AllApplicantList);
 
-                foreach (string recluiter in Rec.Dict.Keys)
-                {
-                    comboBox1.Items.Add(recluiter);
-                }
+                //foreach (string recluiter in Rec.Dict.Keys)
+                //{
+                //    cBReluiter.Items.Add(recluiter);
+                //}
 
                 file.Close();
             }
-
-            
         }
 
         private void btnComprimirCartas_Click(object sender, EventArgs e)
@@ -210,7 +218,7 @@ namespace TalentHub
             try
             {
                 rTBLetters.Clear();
-                long DPI = Convert.ToInt64(mTBBuscarDPI.Text);
+                long DPI = Convert.ToInt64(tBLettersDPI.Text);
                 bool verify = false;
 
                 List<string> FilteredFiles = new List<string>();
@@ -260,6 +268,8 @@ namespace TalentHub
                     }
 
                     MessageBox.Show("Se han descomprimido las cartas de recomendación para el DPI: " + DPI.ToString());
+
+                    btnDecompress.Enabled = false;
                 }
                 else
                 {
@@ -374,39 +384,48 @@ namespace TalentHub
         {
             try
             {
-                if (mTBConversationsDPI.Text == "")
+                rTBConversations.Text = "";
+                if (tBConversationsDPI.Text == "")
                 {
                     MessageBox.Show("No ha ingresado ningún DPI");
                 }
                 else
                 {
-                    string dpi = mTBConversationsDPI.Text;
+                    string dpi = tBConversationsDPI.Text;
                     List<string> conversations = new List<string>();
 
-                    foreach (string file in Directory.EnumerateFiles("cipher-conversation", "*.txt"))
+                    if (AVL.SearchByDPI(AVL.Root, dpi) == null)
                     {
-                        if (file.Contains(dpi))
-                        {
-                            conversations.Add(File.ReadAllText(file)); //Add content of chipher conversation to list
-                        }
+                        MessageBox.Show("No se ha encontrado a ningún recluta con ese DPI.");
                     }
-
-                    string textConversations = ""; int i = 1;
-
-                    foreach (string text in conversations)
+                    else
                     {
-                        if (i < conversations.Count)
+                        foreach (string file in Directory.EnumerateFiles("cipher-conversation", "*.txt"))
                         {
-                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}\n\n", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
+                            if (file.Contains(dpi))
+                            {
+                                conversations.Add(File.ReadAllText(file)); //Add content of chipher conversation to list
+                            }
                         }
-                        else
-                        {
-                            textConversations += (string.Format("Conversación Núm.{0}:\n{1}", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
-                        }
-                        i++;
-                    }
 
-                    rTBConversations.Text = textConversations;
+                        string textConversations = ""; int i = 1;
+
+                        foreach (string text in conversations)
+                        {
+                            if (i < conversations.Count)
+                            {
+                                textConversations += (string.Format("Conversación Núm.{0}:\n{1}\n\n", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
+                            }
+                            else
+                            {
+                                textConversations += (string.Format("Conversación Núm.{0}:\n{1}", i.ToString(), Algorithm.DES.DES.decrypt(text, Data.Instance.Password)));
+                            }
+                            i++;
+                        }
+
+                        rTBConversations.Text = textConversations;
+                        bShowConversations.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -415,21 +434,12 @@ namespace TalentHub
             }
         }
 
-        private void comboBox1_TextChanged(object sender, EventArgs e)
-        {
-            comboBox2.Items.Clear();
-            comboBox2.Text = "";
-            foreach (string company in Rec.Dict[comboBox1.Text])
-            {
-                comboBox2.Items.Add(company);
-            }
-        }
 
         private void bVerifyCompany_Click(object sender, EventArgs e)
         {
-            if (comboBox2.Text != "")
+            if (Data.Instance.Company != "")
             {
-                byte[] data = Encoding.ASCII.GetBytes(comboBox2.Text);
+                byte[] data = Encoding.ASCII.GetBytes(Data.Instance.Company);
                 byte[] hash = alg.ComputeHash(data);
 
                 RSAParameters sharedParameters;
@@ -458,15 +468,237 @@ namespace TalentHub
 
                     if (rsaDeformatter.VerifySignature(hash, signedHash))
                     {
+                        string company = Data.Instance.Company;
+                        string dpi = Data.Instance._Applicant.DPI;
+                        string code = Data.Instance.TreeCompanies[company].CodeMessage(Data.Instance._Applicant.DPI);
+                        if (code.Length % 8 != 0)
+                        {
+                            int count = ((code.Length / 8) + 1) * 8;
+                            code = code.PadLeft(count, '0');
+                        }
+
+                        string codeDPI = Operation.binaryToString(code);
+                        
                         MessageBox.Show("Firma de la empresa correctamente verificada, proceso finalizado");
+                        MessageBox.Show(string.Format("¡Felicidades {0}!,\nSe ha contactado correctamente con un recluta que puede cumplir con las expectativas del puesto de trabajo que tiene disponible.\n\n" +
+                            "Aquí su información de contacto:\n\n" +
+                            "Nombre: {1}\n" +
+                            "DPI (protegido): {2}\n" +
+                            "Fecha de nacimiento: {3}\n\n" +
+                            "Recluta que llevó el proceso: {4}", company, Data.Instance._Applicant.Name, codeDPI,
+                            Data.Instance._Applicant.DateBirth, Data.Instance._Applicant.Recluiter));
                     }
                     else
                     {
                         MessageBox.Show("Error en la verificación de la identidad de la empresa");
                     }
                 }
+
+                actualPage = tPDataEntry;
+                inProcess = false;
+                Data.Instance._Applicant = null;
+                Data.Instance.Company = "";
+                tCMenu.SelectedTab = tPDataEntry;
             }
-            
+        }
+
+        private void bWatchConversations_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists("cipher-conversation"))
+            {
+                Process.Start("explorer.exe", "cipher-conversation");
+            }
+            else
+            {
+                MessageBox.Show("Aún no hay conversaionescargadas al sistema.");
+            }
+        }
+
+
+
+        private void bSearchApplicant_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cBCompanie.Enabled = false;
+                rTBApplicantInformation.Text = "";
+                Data.Instance._Applicant = null;
+                if (mTBApplicantDPI.Text == "")
+                {
+                    MessageBox.Show("No ha ingresado ningún DPI para iniciar un proceso de recultamiento.");
+                    mTBApplicantDPI.Text = "";
+                }
+                else
+                {
+                    string dpi = mTBApplicantDPI.Text;
+                    Applicant applicant = AVL.SearchByDPI(AVL.Root, dpi);
+                    if (applicant == null)
+                    {
+                        MessageBox.Show("El DPI ingresado no se encuentra registrado en el sistema.", "Error");
+                        mTBApplicantDPI.Text = "";
+                    }
+                    else
+                    {
+                        Data.Instance._Applicant = applicant;
+                        string infoApplicant = string.Format("Nombre: {0}\tDPI: {1}\nReclutador: {2}", applicant.Name, applicant.DPI, applicant.Recluiter);
+
+                        tBSelectedRecluiter.Text = applicant.Recluiter;
+                        rTBApplicantInformation.Text = infoApplicant;
+                        cBCompanie.Enabled = true;
+                        bStartRecluitProcess.Visible = true;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido finalizar el proceso, ha ocurrido un error.\n" + ex.Message, "Error");
+            }
+        }
+
+        private void tBSelectedRecluiter_TextChanged(object sender, EventArgs e)
+        {
+            cBCompanie.Items.Clear();
+            cBCompanie.Text = "";
+            List<string> companies = new List<string>();
+            if (tBSelectedRecluiter.Text != "")
+            {
+                foreach (var company in Data.Instance._Applicant.Companies)
+                {
+                    companies.Add(company);
+                }
+
+                foreach (string company in Rec.Dict[tBSelectedRecluiter.Text])
+                {
+                    if (companies.Contains(company))
+                    {
+                        cBCompanie.Items.Add(company);
+                    }
+                }
+            }
+        }
+
+        private void bStartRecluitProcess_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cBCompanie.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Error: no puede iniciar el proceso de reclutamiento si no ha especificado una compañia.\nPor favor seleccionar una compañía.", "Error");
+                }
+                else
+                {
+                    Data.Instance.Company = cBCompanie.Text;
+                    inProcess = true;
+                    actualPage = tPResolution;
+                    tCMenu.SelectedTab = tPResolution;
+                    tBConversationsDPI.Text = Data.Instance._Applicant.DPI;
+                    tBLettersDPI.Text = Data.Instance._Applicant.DPI;
+                    mTBApplicantDPI.Text = "";
+                    rTBApplicantInformation.Text = "";
+                    tBSelectedRecluiter.Text = "";
+                    bNextResolutionPage.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido finalizar el proceso: ha ocurrido un error.\n" + ex.Message, "Error");
+            }
+        }
+
+        private void tCMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (inProcess)
+            {
+                if (tCMenu.SelectedTab == tPDataEntry || tCMenu.SelectedTab == tPImportFiles || tCMenu.SelectedTab == tPStartProcess)
+                {
+                    MessageBox.Show("Esta función no está habilitada en este momento");
+                    tCMenu.SelectedTab = actualPage;
+                }
+                else
+                {
+                    if (tCMenu.SelectedTab != actualPage)
+                    {
+                        MessageBox.Show("Debe continuar con el flujo del proceso actual");
+                        tCMenu.SelectedTab = actualPage;
+                    }
+                }
+            }
+            else
+            {
+                if (tCMenu.SelectedTab == tPConversations || tCMenu.SelectedTab == tPRecommendationLetters || tCMenu.SelectedTab == tPCompleteProcess || tCMenu.SelectedTab == tPResolution)
+                {
+                    MessageBox.Show("Esta función no está habilitada en este momento");
+                    tCMenu.SelectedTab = tPStartProcess;
+                }
+            }
+        }
+
+        private void bNextConversationPage_Click(object sender, EventArgs e)
+        {
+            tBConversationsDPI.Text = "";
+            rTBConversations.Text = "";
+            bNextConversationPage.Enabled = false;
+            bNextRecomendationPage.Enabled = true;
+            actualPage = tPRecommendationLetters;
+            tCMenu.SelectedTab = tPRecommendationLetters;
+        }
+
+        private void bNextResolutionPage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string dpi = Data.Instance._Applicant.DPI;
+                bool vConversation = false, vRecomendation = false;
+
+                foreach (string file in Directory.EnumerateFiles("cipher-conversation", "*.txt"))
+                {
+                    if (file.Contains(dpi))
+                    {
+                        vConversation = true;
+                        break;
+                    }
+                }
+                foreach (string file in Directory.EnumerateFiles("encoded-inputs", "*.txt"))
+                {
+                    if (file.Contains(dpi))
+                    {
+                        vRecomendation = true;
+                        break;
+                    }
+                }
+
+                if (!vConversation || !vRecomendation)
+                {
+                    MessageBox.Show("El candidato no ha cumplido con los requisitos mínimos. Será eliminado del sistema");
+                    AVL.Remove(Data.Instance._Applicant);
+                    Data.Instance._Applicant = null;
+                    inProcess = false;
+                    tCMenu.SelectedTab = tPStartProcess;
+                }
+                else
+                {
+                    MessageBox.Show("Enhorabuena, el candidato ha cumplido con los requisitos mínimos para continuar su proceso de contratación en Talent hub");
+                    bNextResolutionPage.Enabled = false;
+                    bNextConversationPage.Enabled = true;
+                    actualPage = tPConversations;
+                    tCMenu.SelectedTab = tPConversations;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se ha podido completar el proceso: ha ocurrido un error inesperado." +  ex.Message, "Error");
+            }
+        }
+
+        private void bNextRecomendationPage_Click(object sender, EventArgs e)
+        {
+            rTBLetters.Text = "";
+            tBLettersDPI.Text = "";
+            bNextRecomendationPage.Enabled = true;
+            bVerifyCompany.Enabled = true;
+            actualPage = tPCompleteProcess;
+            tCMenu.SelectedTab = tPCompleteProcess;
         }
     }
 }
