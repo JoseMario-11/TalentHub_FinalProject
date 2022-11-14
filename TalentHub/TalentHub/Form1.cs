@@ -269,7 +269,7 @@ namespace TalentHub
 
                     MessageBox.Show("Se han descomprimido las cartas de recomendación para el DPI: " + DPI.ToString());
 
-                    btnDecompress.Enabled = false;
+                    
                 }
                 else
                 {
@@ -424,7 +424,7 @@ namespace TalentHub
                         }
 
                         rTBConversations.Text = textConversations;
-                        bShowConversations.Enabled = false;
+                        
                     }
                 }
             }
